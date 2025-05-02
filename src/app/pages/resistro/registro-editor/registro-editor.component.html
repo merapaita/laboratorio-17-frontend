@@ -1,0 +1,30 @@
+<h2>{{ esEdicion ? 'Editar Registro' : 'Nuevo Registro' }}</h2>
+
+<form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
+    <!-- <div>
+        <label for="nombre">Nombre:</label>
+        <input type="text" id="nombre" formControlName="nombre">
+        <div *ngIf="nombre?.invalid && (nombre?.dirty || nombre?.touched)" class="error-message">
+            <div *ngIf="nombre?.errors?.['required']">El nombre es requerido.</div>
+        </div>
+    </div>
+
+    <div>
+        <label for="email">Email:</label>
+        <input type="email" id="email" formControlName="email">
+        <div *ngIf="email?.invalid && (email?.dirty || email?.touched)" class="error-message">
+            <div *ngIf="email?.errors?.['required']">El email es requerido.</div>
+            <div *ngIf="email?.errors?.['email']">El email no es válido.</div>
+        </div>
+    </div>
+
+    <div>
+        <label for="descripcion">Descripción:</label>
+        <textarea id="descripcion" formControlName="descripcion"></textarea>
+    </div> -->
+
+    <div class="actions">
+        <button type="submit" [disabled]="registroForm.invalid">{{ esEdicion ? 'Guardar Cambios' : 'Guardar' }}</button>
+        <button type="button" (click)="onCancelar()">Cancelar</button>
+    </div>
+</form>

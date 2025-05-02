@@ -1,0 +1,113 @@
+<div class="container mt-5">
+    <form [formGroup]="form">
+        <div class="text-center">
+            <h1>Nuevo Usuario</h1>
+        </div>
+        <div class="row">
+            <div class="form-floating col-9 mb-3">
+                <input type="text" class="form-control" id="name" placeholder="Nombre Completo"
+                    formControlName="name">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+                    <div *ngIf="name?.errors?.['required']">
+                        Nombre es obligatorio
+                    </div>
+                    <div *ngIf="name?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-9 mb-3">
+                <input type="text" class="form-control" id="username" placeholder="username"
+                    formControlName="username">
+                <label for="username" class="form-label">Username</label>
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+                    <div *ngIf="username?.errors?.['required']">
+                        Username es requerido
+                    </div>
+                    <div *ngIf="username?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-9 mb-3">
+                <input type="password" class="form-control" id="password" placeholder="contraseña"
+                    formControlName="password">
+                <label for="password" class="form-label">Contraseña</label>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+                    <div *ngIf="password?.errors?.['required']">
+                        Contraseña es requerida
+                    </div>
+                    <div *ngIf="password?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-9 mb-3">
+                <input type="password" class="form-control" id="repeatedPassword" placeholder="repetir contraseña"
+                    formControlName="repeatedPassword">
+                <label for="repeatedPassword" class="form-label">Repetir Contraseña</label>
+                <div *ngIf="repeatedPassword?.invalid && (repeatedPassword?.dirty || repeatedPassword?.touched)" class="error-message">
+                    <div *ngIf="repeatedPassword?.errors?.['required']">
+                        Repetir Contraseña es requerida
+                    </div>
+                    <div *ngIf="repeatedPassword?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-outline-primary mb-3" [disabled]="form.invalid" type="button"
+                (click)="aceptar()">Aceptar</button>
+            <button class="btn btn-outline-danger mb-3" routerLink='/login' type="button">Cancelar</button>
+            <!-- <button mat-raised-button class="col-2" color="primary" type="submit"
+                [disabled]="form.invalid||estadoBotonAceptar()">
+                <mat-icon>done</mat-icon>
+                <span>Aceptar</span>
+            </button>
+            <button mat-raised-button class="col-2" color="accent" routerLink='/pages/ingreso/lista'
+                type="button">
+                <mat-icon>close</mat-icon>
+                <span>Cancelar</span>
+            </button> -->
+        </div>
+
+    </form>
+</div>
+
+<!-- <mat-card appearance="outlined">
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Nuevo Usuario</mat-label>
+            <input matInput [(ngModel)]="usuario">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Correo</mat-label>
+            <input matInput [(ngModel)]="correo">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-content>
+        <mat-form-field appearance="fill">
+            <mat-label>Contraseña</mat-label>
+            <input matInput type="password" [(ngModel)]="contrasena">
+        </mat-form-field>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="registrar()">Registrar</button>
+    </mat-card-actions>
+</mat-card> -->

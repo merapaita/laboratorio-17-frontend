@@ -1,0 +1,22 @@
+<!-- <button (click)="abrirFormularioNuevo()">Nuevo Registro</button> -->
+
+<!-- <div *ngIf="registroAEditar">
+    <h2>Editar Registro</h2>
+    <app-registro-editor [registroParaEditar]="registroAEditar" (guardarRegistro)="actualizarRegistro($event)"
+        (cancelarEdicion)="cerrarFormulario()"></app-registro-editor>
+</div>
+
+<div *ngIf="mostrarFormularioNuevo">
+    <h2>Nuevo Registro</h2>
+    <app-registro-editor (guardarRegistro)="agregarRegistro($event)"
+        (cancelarEdicion)="cerrarFormulario()"></app-registro-editor>
+</div> -->
+
+<ul>
+    <li *ngFor="let registro of listaDeRegistros">
+        {{ registro.nombre }} - {{ registro.email }}
+        <button (click)="editarRegistro(registro)">Editar</button>
+        <button (click)="verDetalle(registro.id)">Detalle</button>
+        <button (click)="eliminarRegistro(registro.id)">Eliminar</button>
+    </li>
+</ul>

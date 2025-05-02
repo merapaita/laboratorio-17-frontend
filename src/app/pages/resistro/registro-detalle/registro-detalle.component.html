@@ -1,0 +1,14 @@
+<h2>Detalle del Registro</h2>
+
+<div *ngIf="registro">
+    <p><strong>ID:</strong> {{ registro.id }}</p>
+    <p><strong>Nombre:</strong> {{ registro.nombre }}</p>
+    <p><strong>Email:</strong> {{ registro.email }}</p>
+    <p><strong>Descripción:</strong> {{ registro.descripcion || 'N/A' }}</p>
+    <button routerLink="tipo">Volver a la lista</button>
+</div>
+
+<div *ngIf="!registro">
+    <p>No se encontró el registro.</p>
+    <button routerLink="/registros">Volver a la lista</button>
+</div>

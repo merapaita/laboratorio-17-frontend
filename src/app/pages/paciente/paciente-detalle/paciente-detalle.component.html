@@ -1,0 +1,24 @@
+<div class="container">
+    <div class="row mt-5" *ngIf="paciente">
+        <div class="col-md-4 mx-auto">
+            <div class="card" style="width: 18rem;">
+                <div class="card-header text-center">
+                    Detalle
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><b>ID: </b>{{paciente.idPaciente}}</li>
+                    <li class="list-group-item"><b>DNI: </b>{{paciente.dni}}</li>
+                    <li class="list-group-item"><b>PACIENTE: </b>{{paciente.apellidos}}, {{paciente.nombres}}</li>
+                    <li class="list-group-item"><b>DIRECCION: </b>{{paciente.direccion}}</li>
+                    <li class="list-group-item"><b>TELEFONO: </b>{{paciente.telefono}}</li>
+                    <li class="list-group-item"><b>FECHA NACIMIENTO: </b>{{paciente.fecnac}}, {{paciente.edad}}</li>
+                    <li class="list-group-item"><b>SEXO: </b>{{paciente.sexo}}</li>
+                </ul>
+                <div class="card-footer">
+                    <button class="btn btn-outline-primary btn-block" (click)="volver()"><i
+                            class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

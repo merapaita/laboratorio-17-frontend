@@ -21,9 +21,6 @@ export class MedicoComponent implements OnInit {
     this.medicoService.getMensajeCambio().subscribe((texto) => {
       this.notificationService.show(texto, 'success');
     });
-    // this.medicoService.getMensajeCambio().subscribe(texto => {
-    //   this.snackBar.open(texto, 'AVISO', { duration: 2000 });
-    // });
-    this.router.navigate(['/pages/medico/lista']);
+    this.router.navigate(['/pages/doctor/list']);
   }
 }

@@ -1,0 +1,39 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-4 mx-auto">
+            <form [formGroup]="form">
+                <div class="text-center">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div *ngIf="edicion" class="form-floating">
+                    <input type="text" class="form-control" id="id" placeholder="Id" formControlName="id" readonly>
+                    <label for="id" class="form-label">Id</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="name" placeholder="nombre" formControlName="name">
+                    <label for="name" class="form-label">nombre</label>
+                    <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+                        <small *ngIf="name?.errors?.['required']">El nombre es obligatorio.</small>
+                    </div>
+                    <div *ngIf="name?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- 
+                <div *ngIf="this.form.get('nombres').invalid && (nombres.dirty || nombres.touched)"
+                    class="alert alert-danger">
+                    Error en Ap. Paterno
+                    <pre>
+                      {{apePaterno.errors | json}}
+                    </pre>
+                </div> -->
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success mb-3" [disabled]="form.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/role/lista'
+                        type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

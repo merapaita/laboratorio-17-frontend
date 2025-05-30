@@ -14,7 +14,7 @@ export class MedicoService extends GenericService<Medico> {
   private mensajeCambio = new Subject<string>();
 
   constructor(http: HttpClient) {
-    super(http, `${variables.HOST}/medico`);
+    super(http, `${variables.HOST}/doctor`);
   }
 
   listarPageable(_Apellidos: string = '', _Nombres: string = '', p: number, s: number) {

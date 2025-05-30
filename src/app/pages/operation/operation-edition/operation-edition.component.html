@@ -1,0 +1,86 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-4 mx-auto">
+            <form [formGroup]="form">
+                <div class="text-center mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div *ngIf="edicion" class="form-floating mb-3">
+                        <input type="text" class="form-control" id="id" placeholder="Id" formControlName="id" readonly>
+                        <label for="id" class="form-label">Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="name" placeholder="nombre" formControlName="name">
+                        <label for="name" class="form-label">nombre</label>
+                        <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+                            <small *ngIf="name?.errors?.['required']">El nombre es obligatorio.</small>
+                        </div>
+                        <div *ngIf="name?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+    
+                        <!-- 
+                        <div *ngIf="this.form.get('nombres').invalid && (nombres.dirty || nombres.touched)"
+                            class="alert alert-danger">
+                            Error en Ap. Paterno
+                            <pre>
+                              {{apePaterno.errors | json}}
+                            </pre>
+                        </div> -->
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="path" placeholder="path" formControlName="path">
+                        <label for="path" class="form-label">path</label>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <select class="form-select" formControlName="httpMethod">
+                            <option *ngFor="let t of (httpMethods$ | async)" [value]="t.codigo">
+                                {{t.descri}}
+                            </option>
+                        </select>
+                        <label for="httpMethod" class="form-label">HttpMethod</label>
+                        <div *ngIf="httpMethod?.invalid && (httpMethod?.dirty || httpMethod?.touched)"
+                            class="error-message">
+                            <small *ngIf="httpMethod?.errors?.['required']">El nombre es obligatorio.</small>
+                        </div>
+                        <div *ngIf="httpMethod?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="form-check form-switch mb-3">
+                            <label class="form-check-label" for="pemitAll">Permit All</label>
+                            <input class="form-check-input" type="checkbox" name="permitAll" id="permitAll"
+                                formControlName="permitAll">
+                        </div>
+                    </div>
+                    <fieldset formGroupName="module">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" formControlName="id">
+                                <option *ngFor="let t of (modules$ | async)" [value]="t.id">
+                                    {{t.id}} {{t.name}}
+                                </option>
+                            </select>
+                            <label for="id" class="form-label">Modulo</label>
+                            <div *ngIf="form.get('module.id')?.invalid && (form.get('module.id')?.dirty || form.get('module.id')?.touched)"
+                                class="error-message">
+                                <small *ngIf="form.get('module.id')?.errors?.['required']">El modulo es
+                                    obligatorio.</small>
+                            </div>
+                            <div *ngIf="form.get('module.id')?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                        </div>
+                    </fieldset>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success mb-3" [disabled]="form.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/operation/list'
+                        type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

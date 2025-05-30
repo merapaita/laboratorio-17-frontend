@@ -1,1 +1,49 @@
-<p>tipo-edicion works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-md-4 mx-auto">
+            <form [formGroup]="form">
+                <div class="text-center mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div *ngIf="edicion" class="form-floating mb-3">
+                        <input type="text" class="form-control" id="idTipo" placeholder="Id" formControlName="idTipo"
+                            readonly>
+                        <label for="idTipo" class="form-label">Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="descripcion" placeholder="descripcion" style="text-transform: uppercase;"
+                            formControlName="descripcion">
+                        <label for="descripcion" class="form-label">descripcion</label>
+                        <div *ngIf="descripcion?.invalid && (descripcion?.dirty || descripcion?.touched)" class="error-message">
+                            <div *ngIf="descripcion?.errors?.['required']">
+                                descripcion es obligatorio
+                            </div>
+                            <div *ngIf="descripcion?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success mb-3" [disabled]="form.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/type/list' type="button">Cancelar</button>
+                    <!-- <button mat-raised-button class="col-2" color="primary" type="submit"
+                        [disabled]="form.invalid||estadoBotonAceptar()">
+                        <mat-icon>done</mat-icon>
+                        <span>Aceptar</span>
+                    </button>
+                    <button mat-raised-button class="col-2" color="accent" routerLink='/pages/ingreso/lista'
+                        type="button">
+                        <mat-icon>close</mat-icon>
+                        <span>Cancelar</span>
+                    </button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

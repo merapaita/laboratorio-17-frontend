@@ -35,6 +35,6 @@ export class MedicoDetalleComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigate(['pages/medico/lista']);
+    this.router.navigate(['pages/doctor/list']);
   }
 }

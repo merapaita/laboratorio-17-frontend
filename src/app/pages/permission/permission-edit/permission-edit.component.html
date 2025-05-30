@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-4 mx-auto">
+            <form [formGroup]="form">
+                <div class="text-center mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" formControlName="role">
+                            <option *ngFor="let t of (roles$ | async)" [value]="t.name">
+                                {{t.name}}
+                            </option>
+                        </select>
+                        <label for="role" class="form-label">Rol</label>
+                        <div *ngIf="role?.invalid && (role?.dirty || role?.touched)" class="error-message">
+                            <small *ngIf="role?.errors?.['required']">El rol es obligatorio.</small>
+                        </div>
+                        <div *ngIf="role?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <select class="form-select" formControlName="operation">
+                            <option *ngFor="let t of (operations$ | async)" [value]="t.name">
+                                {{t.name}}
+                            </option>
+                        </select>
+                        <label for="operation" class="form-label">Operacion</label>
+                        <div *ngIf="operation?.invalid && (operation?.dirty || operation?.touched)" class="error-message">
+                            <small *ngIf="operation?.errors?.['required']">El rol es obligatorio.</small>
+                        </div>
+                        <div *ngIf="operation?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success mb-3" [disabled]="form.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/permission/list'
+                        type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

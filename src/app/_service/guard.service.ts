@@ -21,7 +21,7 @@ export class GuardService implements CanActivate {
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     //1) VERIFICAR SI ESTA LOGUEADO
     let rpta = this.loginService.estaLogueado();
-console.log("autenticado:", rpta);    
+//console.log("autenticado:", rpta);    
     if (!rpta) {
       this.loginService.cerrarSesion();
       return false;
@@ -29,7 +29,7 @@ console.log("autenticado:", rpta);
     //2) VERIFICAR SI EL TOKEN NO HA EXPIRADO      
     const helper = new JwtHelperService();
     let token = sessionStorage.getItem(variables.TOKEN_NAME);
-console.log('token:' + token);    
+//console.log('token:' + token);    
     if (!helper.isTokenExpired(token)) {
       //3) VERIFICAR SI TIENES EL ROL NECESARIO PARA ACCEDER A ESA PAGINA  
       //url -> /pages/consulta

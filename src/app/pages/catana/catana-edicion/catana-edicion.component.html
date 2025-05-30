@@ -1,1 +1,169 @@
-<p>catana-edicion works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-10 mx-auto">
+            <form [formGroup]="formMaestro">
+                <div class="text-center mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div *ngIf="edicion" class="form-floating mb-3">
+                        <input type="text" class="form-control" id="idCatana" placeholder="Id"
+                            formControlName="idCatana" readonly>
+                        <label for="idCatana" class="form-label">Id</label>
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="descripcion" placeholder="descripcion"
+                            style="text-transform: uppercase;" formControlName="descripcion">
+                        <label for="descripcion" class="form-label">descripcion</label>
+                        <div *ngIf="descripcion?.invalid && (descripcion?.dirty || descripcion?.touched)"
+                            class="error-message">
+                            <div *ngIf="descripcion?.errors?.['required']">
+                                descripcion es obligatorio
+                            </div>
+                            <div *ngIf="descripcion?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                </div>
+                <!-- Detalles -->
+                <div class="mt-4 text-center">
+                    <!-- Botón para abrir el modal -->
+                    <button type="button" class="btn btn-secondary" data-bs-toggle="modal"
+                        data-bs-target="#detalleModal">
+                        + Agregar detalle
+                    </button>
+                    <h5>Detalles</h5>
+                    <!-- {{detexamen}} -->
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>item</th>
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                                <th>Val. Referencia</th>
+                                <th>Unidad</th>
+                                <th>Formula</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="detexamen">
+                            <tr *ngFor="let detalle of detexamen?.controls; let i = index" [formGroupName]="i">
+                                <td>{{ detalle.get('item')?.value }}</td>
+                                <td>{{ detalle.get('tipo')?.value.descripcion }}</td>
+                                <td>{{ detalle.get('descripcion')?.value }}</td>
+                                <td>{{ detalle.get('valref')?.value }}</td>
+                                <td>{{ detalle.get('unidad')?.value }}</td>
+                                <td>{{ detalle.get('formula')?.value }}</td>
+                                <td>
+                                    <button type="button" class="btn btn-sm btn-warning">Editar</button>
+                                    <button type="button" class="btn btn-sm btn-danger">Eliminar</button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-primary mb-3" [disabled]="formMaestro.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/catana/list'
+                        type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal para agregar detalle -->
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" [formGroup]="formDetalle">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel">Agregar Detalle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <!-- <div class="mb-3">
+                    <label class="form-label">Examen</label>
+                    <input type="text" formControlName="idExamen" class="form-control" />
+                    [ngClass]="{ 'is-invalid': detalleForm.get('articulo')?.invalid && detalleForm.get('articulo')?.touched }"
+                    <div class="invalid-feedback">Este campo es obligatorio</div>
+                </div> -->
+                <fieldset formGroupName="tipo">
+                    <div class="form-floating mb-3">
+                        <select class="form-select" formControlName="idTipo">
+                            <option *ngFor="let t of (tipos$ | async)" [value]="t.idTipo">
+                                {{t.idTipo}} {{t.descripcion}}
+                            </option>
+                        </select>
+                        <label for="idTipo" class="form-label">Tipo Excamen</label>
+                        <div *ngIf="formDetalle.get('tipo.idTipo')?.invalid && (formDetalle.get('tipo.idTipo')?.dirty || formDetalle.get('tipo.idTipo')?.touched)"
+                            class="error-message">
+                            <small *ngIf="formDetalle.get('tipo.idTipo')?.errors?.['required']">El tipo es
+                                obligatorio.</small>
+                        </div>
+                        <div *ngIf="formDetalle.get('tipo.idTipo')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </fieldset>
+                <!-- <div class="mb-3">
+                    <label class="form-label">item</label>
+                    <input type="number" formControlName="item" class="form-control" />
+                    [ngClass]="{ 'is-invalid': detalleForm.get('cantidad')?.invalid && detalleForm.get('cantidad')?.touched }"
+                    <div class="invalid-feedback">Debe ser mayor que cero</div>
+                </div> -->
+                <div class="mb-3">
+                    <label class="form-label">Descripcion</label>
+                    <input type="text" formControlName="descripcion" class="form-control" />
+                    <div *ngIf="formDetalle.get('descripcion')?.invalid && (formDetalle.get('descripcion')?.dirty || formDetalle.get('descripcion')?.touched)"
+                        class="error-message">
+                        <div *ngIf="formDetalle.get('descripcion')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">unidad</label>
+                    <input type="text" formControlName="unidad" class="form-control" />
+                    <div *ngIf="formDetalle.get('unidad')?.invalid && (formDetalle.get('unidad')?.dirty || formDetalle.get('unidad')?.touched)"
+                        class="error-message">
+                        <div *ngIf="formDetalle.get('unidad')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Val. referencia</label>
+                    <input type="text" formControlName="valref" class="form-control" />
+                    <div *ngIf="formDetalle.get('valref')?.invalid && (formDetalle.get('valref')?.dirty || formDetalle.get('valref')?.touched)"
+                        class="error-message">
+                        <div *ngIf="formDetalle.get('valref')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">formula</label>
+                    <input type="text" formControlName="formula" class="form-control" />
+                    <div *ngIf="formDetalle.get('formula')?.invalid && (formDetalle.get('formula')?.dirty || formDetalle.get('formula')?.touched)"
+                        class="error-message">
+                        <div *ngIf="formDetalle.get('formula')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-outline-danger" data-bs-dismiss="modal" >Cancelar</button>
+                <button type="button" class="btn btn-success" data-bs-dismiss="modal"
+                    (click)="guardarDetalle()" [disabled]="formDetalle.invalid">Guardar</button>
+            </div>
+            <!--  -->
+        </div>
+    </div>
+</div>

@@ -1,5 +1,5 @@
 export interface ReqPageable {
-    content:          Content[];
+    content:          [];
     pageable:         Pageable;
     last:             boolean;
     totalPages:       number;
@@ -12,11 +12,11 @@ export interface ReqPageable {
     empty:            boolean;
 }
 
-interface Content {
-    idMedico:  number;
-    nombres:   string;
-    apellidos: string;
-}
+// interface Content {
+//     idMedico:  number;
+//     nombres:   string;
+//     apellidos: string;
+// }
 
 interface Pageable {
     pageNumber: number;

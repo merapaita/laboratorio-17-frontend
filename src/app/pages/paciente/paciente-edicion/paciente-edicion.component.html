@@ -1,1 +1,177 @@
-<p>paciente-edicion works!</p>
+<div class="container">
+    <div class="row mt-5">
+        <div class="col-8 mx-auto border border-primary">
+            <form [formGroup]="form">
+                <div class="text-center mt-3 mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div *ngIf="edicion" class="form-floating col-4 mb-3">
+                        <input type="text" class="form-control" id="idPaciente" placeholder="Id"
+                            formControlName="idPaciente" readonly>
+                        <label for="idPaciente" class="form-label">Id</label>
+                    </div>
+                    <div *ngIf="!edicion" class="col-8"></div>
+                    <div *ngIf="edicion" class="col-4"></div>
+                    <div class="form-floating col-4 mb-3">
+                        <input type="text" class="form-control" id="dni" placeholder="dni" formControlName="dni">
+                        <label for="dni" class="form-label">dni</label>
+                        <div *ngIf="dni?.invalid && (dni?.dirty || dni?.touched)" class="error-message">
+                            <div *ngIf="dni?.errors?.['required']">
+                                dni es obligatorio
+                            </div>
+                            <div *ngIf="dni?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <input type="text" class="form-control" id="apellidos" placeholder="apellidos"
+                            style="text-transform: uppercase;" formControlName="apellidos">
+                        <label for="apellidos" class="form-label">Apellidos</label>
+                        <div *ngIf="apellidos?.invalid && (apellidos?.dirty || apellidos?.touched)"
+                            class="error-message">
+                            <div *ngIf="apellidos?.errors?.['required']">
+                                apellidos es obligatorio
+                            </div>
+                            <div *ngIf="apellidos?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <input type="text" class="form-control" id="nombres" placeholder="nombres"
+                            style="text-transform: uppercase;" formControlName="nombres">
+                        <label for="nombres" class="form-label">Nombres</label>
+                        <div *ngIf="nombres?.invalid && (nombres?.dirty || nombres?.touched)" class="error-message">
+                            <small *ngIf="nombres?.errors?.['required']">El nombre es obligatorio.</small>
+                        </div>
+                        <div *ngIf="nombres?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div>
+                        <!-- <div *ngIf="this.form.get('nombres')?.errors?.['required']" class="alert alert-danger">
+                            nombres es requerido
+                        </div>
+                        <div *ngIf="this.form.get('nombres').invalid && (nombres.dirty || nombres.touched)"
+                            class="alert alert-danger">
+                            Error en Ap. Paterno
+                            <pre>
+                              {{apePaterno.errors | json}}
+                            </pre>
+                        </div> -->
+                    </div>
+                    <div class="form-floating mb-3">
+                        <input type="text" class="form-control" id="direccion" placeholder="direccion"
+                            style="text-transform: uppercase;" formControlName="direccion">
+                        <label for="direccion" class="form-label">Direccion</label>
+                        <div *ngIf="direccion?.invalid && (direccion?.dirty || direccion?.touched)"
+                            class="error-message">
+                            <div *ngIf="direccion?.errors?.['required']">
+                                direccion es obligatorio
+                            </div>
+                            <div *ngIf="direccion?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <input type="date" class="form-control" id="fecnac" placeholder="Fec. Nacimiento"
+                            formControlName="fecnac">
+                        <label for="fecnac" class="form-label">Fec. Nacimiento</label>
+                        <div *ngIf="fecnac?.errors?.['required']" class="alert alert-danger">
+                            Fecha de Nacimiento es requerido
+                        </div>
+                        <div *ngIf="fecnac?.invalid && (fecnac?.dirty || fecnac?.touched)" class="alert alert-danger">
+                            Error en F. de Nacimiento
+                            <!-- <pre>
+                      {{documento.errors | json}}
+                    </pre> -->
+                        </div>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <input type="text" class="form-control" id="edad" placeholder="edad"
+                            style="text-transform: uppercase;" formControlName="edad">
+                        <label for="edad" class="form-label">edad</label>
+                        <div *ngIf="edad?.invalid && (edad?.dirty || edad?.touched)" class="error-message">
+                            <div *ngIf="edad?.errors?.['required']">
+                                edad es obligatorio
+                            </div>
+                            <div *ngIf="edad?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                    <div class="col-6 mb-3">
+                        <label>
+                            <input type="radio" name="sexo" formControlName="sexo" value="M">
+                            Masculino
+                        </label>
+                        <label>
+                            <input type="radio" name="sexo" formControlName="sexo" value="F">
+                            Femenino
+                        </label>
+
+                        <!-- <input type="text" class="form-control" id="sexo" placeholder="sexo" style="text-transform: uppercase;"
+                            formControlName="sexo">
+                        <label for="sexo" class="form-label">sexo</label> -->
+                        <div *ngIf="sexo?.invalid && (sexo?.dirty || sexo?.touched)" class="error-message">
+                            <div *ngIf="sexo?.errors?.['required']">
+                                sexo es obligatorio
+                            </div>
+                            <div *ngIf="sexo?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                    <div class="form-floating col-6 mb-3">
+                        <input type="text" class="form-control" id="telefono" placeholder="telefono"
+                            style="text-transform: uppercase;" formControlName="telefono">
+                        <label for="telefono" class="form-label">Telefono</label>
+                        <div *ngIf="telefono?.invalid && (telefono?.dirty || telefono?.touched)" class="error-message">
+                            <div *ngIf="telefono?.errors?.['required']">
+                                telefono es obligatorio
+                            </div>
+                            <div *ngIf="telefono?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                            <!-- <pre>
+                                {{apellidos?.errors | json}}
+                              </pre> -->
+                        </div>
+                    </div>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-success mb-3" [disabled]="form.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/patient/list'
+                        type="button">Cancelar</button>
+                    <!-- <button mat-raised-button class="col-2" color="primary" type="submit"
+                        [disabled]="form.invalid||estadoBotonAceptar()">
+                        <mat-icon>done</mat-icon>
+                        <span>Aceptar</span>
+                    </button>
+                    <button mat-raised-button class="col-2" color="accent" routerLink='/pages/ingreso/lista'
+                        type="button">
+                        <mat-icon>close</mat-icon>
+                        <span>Cancelar</span>
+                    </button> -->
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

@@ -7,7 +7,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { MedicoService } from '../../../_service/medico.service';
 import { Medico } from '../../../_model/medico';
 import { NotificationService } from '../../../_service/notification.service';
@@ -15,7 +15,7 @@ import { NotificationService } from '../../../_service/notification.service';
 @Component({
   selector: 'app-medico-edicion',
   standalone: true,
-  imports: [ReactiveFormsModule, NgIf],
+  imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './medico-edicion.component.html',
   styleUrl: './medico-edicion.component.css',
 })
@@ -24,7 +24,7 @@ export class MedicoEdicionComponent implements OnInit {
   medico:Medico|null = null;
   id = 0;
   edicion: boolean = false;
-  titulo = '';
+  titulo = 'NUEVO REGISTRO';
   //   msgError = "";
 
   private activateRoute = inject(ActivatedRoute);
@@ -36,7 +36,7 @@ export class MedicoEdicionComponent implements OnInit {
       idMedico: new FormControl(),
       apellidos: new FormControl('', [
         Validators.required,
-        Validators.pattern(/^([A-Za-zÑñ]){3,30}$/),
+        Validators.pattern(/^([A-Za-zÑñ\s]){3,30}$/),
       ]),
       nombres: new FormControl('', [
         Validators.required,
@@ -55,7 +55,9 @@ export class MedicoEdicionComponent implements OnInit {
 
   initForm() {
     if (this.edicion) {
+      this.titulo = "EDICION DE REGISTRO"
       this.medicoService.listarPorId(this.id).subscribe((data) => {
+        console.log(data);
         this.form.controls['idMedico'].setValue(data.idMedico);
         this.form.controls['apellidos'].setValue(data.apellidos);
         this.form.controls['nombres'].setValue(data.nombres);
@@ -64,18 +66,9 @@ export class MedicoEdicionComponent implements OnInit {
   }
 
   aceptar() {
+    this.form.controls['apellidos'].setValue(  this.form.value['apellidos'].toUpperCase() );
+    this.form.controls['nombres'].setValue(  this.form.value['nombres'].toUpperCase() );
     const registroMedico: Medico = this.form.value;
-    //    let datos!:string;
-    //    let medico = new Medico{};
-    //    medicos: Array<Medico> = [];
-
-    // datos=`medico.idMedico=${this.form.value.idMedico}
-    // medico.apellidos = ${this.form.value.apellidos}
-    // medico.nombres   = ${this.form.value.nombres}
-    // `
-    //    medico.idMedico  = this.form.value['idMedico'];
-    //    medico.apellidos = this.form.value['apellidos'];
-    //    medico.nombres   = this.form.value['nombres'];
 
     if (this.edicion) {
       //MODIFICAR
@@ -87,7 +80,7 @@ export class MedicoEdicionComponent implements OnInit {
         //   positionClass: 'toast-center-center',
         // });
         this.router.navigate([
-          `pages/medico/detalle/${registroMedico.idMedico}`,
+          `pages/doctor/detail/${registroMedico.idMedico}`,
         ]);
       });
     } else {
@@ -103,7 +96,7 @@ export class MedicoEdicionComponent implements OnInit {
         //   timeOut: 3000,
         //   positionClass: 'toast-center-center',
         // });
-        this.router.navigate([`pages/medico/detalle/${idMedico}`]);
+        this.router.navigate([`pages/doctor/detail/${idMedico}`]);
       });
     }
   }

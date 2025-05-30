@@ -1,0 +1,48 @@
+<div class="container">
+    <div class="row mt-5" *ngIf="catana">
+        <div class="col-10 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    Detalle
+                </div>
+                <div class="card-body">
+                    <div class="row mb-3">
+                        <div class="col-3">
+                            <b>ID: </b>{{catana.idCatana}}
+                        </div>
+                        <div class="col-6"></div>
+                        <div class="col-3">
+                            <b>Descripcion: </b>{{catana.descripcion}}
+                        </div>
+                    </div>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Tipo</th>
+                                <th>Descripcion</th>
+                                <th>Val. Refer.</th>
+                                <th>Unidad</th>
+                                <th>Formula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of catana.detexamen">
+                                <td>{{item.item}}</td>
+                                <td>{{item.tipo.descripcion}}</td>
+                                <td>{{item.descripcion}}</td>
+                                <td>{{item.valref}}</td>
+                                <td>{{item.unidad}}</td>
+                                <td>{{item.formula}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-primary btn-block" (click)="volver()"><i
+                            class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

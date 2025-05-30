@@ -34,7 +34,6 @@ export class LoginComponent implements OnInit {
     loginUsuario.password = this.clave;
 
     this.loginService.login(loginUsuario).subscribe((data) => {
-console.log(data);      
       sessionStorage.setItem(variables.TOKEN_NAME, data.jwt);
       // sessionStorage.setItem(variables.REFRESH_TOKEN, data.refresh_token);
       this.router.navigate(['pages/inicio']);

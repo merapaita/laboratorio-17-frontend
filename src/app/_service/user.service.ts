@@ -1,23 +1,45 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { variables } from '../variables';
 import { UsuarioNuevo } from '../_model/usuario-nuevo';
 import { UsuarioRegistrado } from '../_model/usuario-registrado';
 import { Subject } from 'rxjs';
+import { ReqPageable } from '../_model';
 //import { environment } from 'src/environments/environment';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
+  private http = inject(HttpClient);
+  private router = inject(Router);
+
   private url: string = `${variables.HOST}/customers`;
   private mensajeCambio = new Subject<string>();
 
-  constructor(private http: HttpClient, private router: Router) {}
+  listar(role: string = '') {
+    return this.http.get<UsuarioRegistrado>(`${this.url}`);
+  }
+
+  listPageable(p: number, s: number) {
+    return this.http.get<ReqPageable>(
+      `${this.url}/pageable?page=${p}&size=${s}`
+    );
+  }
+
+  listarPorId(id: string) {
+    return this.http.get<UsuarioRegistrado>(`${this.url}/${id}`);
+  }
 
   nuevo(usuarioNuevo: UsuarioNuevo) {
     return this.http.post<UsuarioRegistrado>(`${this.url}`, usuarioNuevo, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json;'),
+    });
+  }
+
+  modifica(usuarioNuevo: UsuarioNuevo) {
+    return this.http.put<UsuarioRegistrado>(`${this.url}`, usuarioNuevo, {
       headers: new HttpHeaders().set('Content-Type', 'application/json;'),
     });
   }

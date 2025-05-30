@@ -1,0 +1,97 @@
+<form [formGroup]="form" (ngSubmit)="onSubmit()" class="needs-validation" novalidate>
+    <div class="container mt-4">
+        
+    </div>
+    <div>
+        <label>Fecha:</label>
+        <input type="date" formControlName="fecha" />
+    </div>
+    <div>
+        <label>Cliente:</label>
+        <input type="text" formControlName="cliente" />
+    </div>
+    <div>
+        <label>Total Factura:</label>
+        <input type="text" formControlName="total_factura" disable />
+    </div>
+    <div class="mt-4">
+        <h5>Detalles</h5>
+        <table class="table table-bordered table-sm">
+            <thead>
+                <tr>
+                    <th>Artículo</th>
+                    <th>Cantidad</th>
+                    <th>Precio Unitario</th>
+                    <th>Total</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i">
+                    <td>{{ detalle.get('articulo')?.value }}</td>
+                    <td>{{ detalle.get('cantidad')?.value }}</td>
+                    <td>{{ detalle.get('precio_unitario')?.value }}</td>
+                    <td>{{ detalle.get('total_detalle')?.value }}</td>
+                    <td><button type="button" class="btn btn-sm btn-danger" (click)="removeDetalle(i)">Eliminar</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <!-- Botón para abrir el modal -->
+        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#detalleModal">
+            + Agregar detalle
+        </button>
+    </div>
+    <!-- <h4>Detalles</h4>
+    <div formArrayName="detalles">
+        <div *ngFor="let detalle of detalles.controls; let i = index" [formGroupName]="i" class="detalle-item">
+            <label>Artículo:</label>
+            <input formControlName="articulo" />
+            <label>Cantidad:</label>
+            <input type="number" formControlName="cantidad" />
+            <label>Precio Unitario:</label>
+            <input type="number" formControlName="precio_unitario" />
+            <label>Total Detalle:</label>
+            <input formControlName="total_detalle" disable />
+            <button type="button" (click)="removeDetalle(i)" *ngIf="detalles.length > 1">Eliminar</button>
+        </div>
+    </div>
+    <button type="button" (click)="addDetalle()">Agregar Detalle</button> -->
+    <!-- Modal -->
+    <br /><br />
+    <button type="submit">Guardar Factura</button>
+</form>
+
+<div class="modal fade" id="detalleModal" tabindex="-1" aria-labelledby="detalleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content" [formGroup]="detalleForm">
+            <div class="modal-header">
+                <h5 class="modal-title" id="detalleModalLabel">Agregar detalle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label class="form-label">Artículo</label>
+                    <input type="text" formControlName="articulo" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Cantidad</label>
+                    <input type="number" formControlName="cantidad" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Precio Unitario</label>
+                    <input type="number" formControlName="precio_unitario" class="form-control" />
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-primary" (click)="guardarDetalle()"
+                    data-bs-dismiss="modal">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>

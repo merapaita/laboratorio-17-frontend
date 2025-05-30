@@ -1,0 +1,94 @@
+<div class="container mt-5">
+    <form [formGroup]="form">
+        <div class="text-center">
+            <h1>Nuevo Usuario</h1>
+        </div>
+        <div class="row">
+            <div class="form-floating col-9 mb-3">
+                <input type="text" class="form-control" id="name" placeholder="Nombre Completo" formControlName="name">
+                <label for="name" class="form-label">Nombre Completo</label>
+                <div *ngIf="name?.invalid && (name?.dirty || name?.touched)" class="error-message">
+                    <div *ngIf="name?.errors?.['required']">
+                        Nombre es obligatorio
+                    </div>
+                    <div *ngIf="name?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-9 mb-3">
+                <input type="text" class="form-control" id="username" placeholder="username" formControlName="username">
+                <label for="username" class="form-label">Username</label>
+                <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
+                    <div *ngIf="username?.errors?.['required']">
+                        Username es requerido
+                    </div>
+                    <div *ngIf="username?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-3 mb-3">
+                <select class="form-select" formControlName="role">
+                    <option *ngFor="let t of (roles$ | async)" [value]="t.name">
+                        {{t.name}}
+                    </option>
+                </select>
+                <label for="id" class="form-label">Modulo</label>
+                <div *ngIf="form.get('module.id')?.invalid && (form.get('module.id')?.dirty || form.get('module.id')?.touched)"
+                    class="error-message">
+                    <small *ngIf="form.get('module.id')?.errors?.['required']">El modulo es obligatorio.</small>
+                </div>
+                <div *ngIf="form.get('module.id')?.errors?.['pattern']" class="error-message">
+                    error de formato
+                </div>
+            </div>
+
+            <div class="form-floating col-9 mb-3">
+                <input type="password" class="form-control" id="password" placeholder="contraseña"
+                    formControlName="password">
+                <label for="password" class="form-label">Contraseña</label>
+                <div *ngIf="password?.invalid && (password?.dirty || password?.touched)" class="error-message">
+                    <div *ngIf="password?.errors?.['required']">
+                        Contraseña es requerida
+                    </div>
+                    <div *ngIf="password?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+            <div class="form-floating col-9 mb-3">
+                <input type="password" class="form-control" id="repeatedPassword" placeholder="repetir contraseña"
+                    formControlName="repeatedPassword">
+                <label for="repeatedPassword" class="form-label">Repetir Contraseña</label>
+                <div *ngIf="repeatedPassword?.invalid && (repeatedPassword?.dirty || repeatedPassword?.touched)"
+                    class="error-message">
+                    <div *ngIf="repeatedPassword?.errors?.['required']">
+                        Repetir Contraseña es requerida
+                    </div>
+                    <div *ngIf="repeatedPassword?.errors?.['pattern']" class="error-message">
+                        error de formato
+                    </div>
+                    <!-- <pre>
+                        {{apellidos?.errors | json}}
+                      </pre> -->
+                </div>
+            </div>
+        </div>
+        <div class="text-center">
+            <button class="btn btn-outline-primary mb-3" [disabled]="form.invalid" type="button"
+                (click)="aceptar()">Aceptar</button>
+            <button class="btn btn-outline-danger mb-3" routerLink='/pages/user/list' type="button">Cancelar</button>
+        </div>
+
+    </form>
+</div>

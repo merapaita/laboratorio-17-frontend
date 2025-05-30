@@ -20,13 +20,6 @@ import { Medico } from '../../../_model/medico';
   styleUrl: './medico-lista.component.css',
 })
 export class MedicoListaComponent implements OnInit {
-  // displayedColumns: string[] = [
-  //   'medico.idMedico',
-  //   'medico.apellidos',
-  //   'medico.nombres',
-  //   'acciones',
-  // ];
-  // clickedRows = new Set<Medico>();
   notifications: Notification[] = [];
   reqPage: ReqPageable | undefined;
 
@@ -117,64 +110,4 @@ export class MedicoListaComponent implements OnInit {
       this.changePage(this._numberPage);
     }
   }
-  
 }
-
-/**
- import { Component, OnInit } from '@angular/core';
-
-@Component({
-  selector: 'app-paginacion',
-  templateUrl: './paginacion.component.html'
-})
-export class PaginacionComponent implements OnInit {
-  datos: any[] = [];
-  elementosPorPagina = 5;
-  paginaActual = 1;
-  paginaIr: number | null = null;
-  paginaIrValida = true;
-
-  ngOnInit() {
-    this.datos = Array.from({ length: 53 }, (_, i) => ({ nombre: `Elemento ${i + 1}` }));
-    this.paginaIr = this.paginaActual;
-    this.validarPagina();
-  }
-
-  totalPaginas(): number {
-    return Math.ceil(this.datos.length / this.elementosPorPagina);
-  }
-
-  datosPaginados() {
-    const inicio = (this.paginaActual - 1) * this.elementosPorPagina;
-    return this.datos.slice(inicio, inicio + this.elementosPorPagina);
-  }
-
-  cambiarPagina(pagina: number) {
-    if (pagina >= 1 && pagina <= this.totalPaginas()) {
-      this.paginaActual = pagina;
-      this.paginaIr = pagina;
-      this.validarPagina();
-    }
-  }
-
-  irAPrimera() {
-    this.cambiarPagina(1);
-  }
-
-  irAUltima() {
-    this.cambiarPagina(this.totalPaginas());
-  }
-
-  irAPagina() {
-    if (this.paginaIrValida && this.paginaIr !== null) {
-      this.cambiarPagina(this.paginaIr);
-    }
-  }
-
-  validarPagina() {
-    const total = this.totalPaginas();
-    this.paginaIrValida =
-      this.paginaIr !== null && this.paginaIr >= 1 && this.paginaIr <= total;
-  }
-} 
- */

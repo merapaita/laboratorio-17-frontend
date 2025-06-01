@@ -1,0 +1,81 @@
+<div class="container">
+    <div class="row mt-5" *ngIf="analysis">
+        <div class="col-10 mx-auto">
+            <div class="card">
+                <div class="card-header text-center">
+                    Detalle
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-3 mt-1 mb-1">
+                            <b>FECHA:</b>{{analysis.fecha}}
+                        </div>
+                        <div class="col-9 mt-1 mb-1">
+                            <b>DESCRIPCION:</b>{{analysis.descripcion}}
+                        </div>
+                        <div class="col-6 mt-1 mb-1">
+                            <b>MEDICO: </b>{{analysis.medico.apellidos}} {{analysis.medico.nombres}}
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-6 mt-1 mb-1">
+                            <b>PACIENTE:</b>{{analysis.paciente.apellidos}} {{analysis.paciente.nombres}}
+                        </div>
+                        <div class="col-6 mt-1 mb-1">
+                            <b>DIRECCION:</b>{{analysis.paciente.direccion}}
+                        </div>
+                        <div class="col-3 mt-1 mb-1">
+                            <b>TELEFONO: </b>{{analysis.paciente.telefono}}
+                        </div>
+                        <div class="col-3 mt-1 mb-1">
+                            <b>fec. nacimiento:</b>{{analysis.paciente.fecnac}}
+                        </div>
+                        <div class="col-3 mt-1 mb-1">
+                            <b>EDAD:</b>{{analysis.paciente.edad}}
+                        </div>
+                        <div class="col-3 mt-1 mb-1">
+                            <b>SEXO: </b>{{analysis.paciente.sexo}}
+                        </div>
+                    </div>
+                    <div class="row mb-2">
+                        <div class="col-3 mt-1 mb-1">
+                            <b>COD. ENVIO:</b>{{analysis.codenv}}
+                        </div>
+                        <div class="col-6 mt-1 mb-1">
+                            <b>COMPROBANTE:</b>{{analysis.compag}}
+                        </div>
+                        <div class="col-3 mt-1 mb-1">
+                            <b>MONTO: </b>{{analysis.monto}}
+                        </div>
+                    </div>
+                    <table class="table table-dark">
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Descripcion</th>
+                                <th>Resultado</th>
+                                <th>Unidad</th>
+                                <th>Val. Refer.</th>
+                                <th>Formula</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let item of analysis.detiteana">
+                                <td>{{item.examen.item}}</td>
+                                <td>{{item.examen.tipo.descripcion}}</td>
+                                <td>{{item.resultado}}</td>
+                                <td>{{item.examen.unidad}}</td>
+                                <td>{{item.examen.valref}}</td>
+                                <td>{{item.examen.formula}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="card-footer">
+                    <button class="btn btn-outline-primary btn-block" (click)="volver()"><i
+                            class="fas fa-arrow-alt-circle-left"></i> Volver</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

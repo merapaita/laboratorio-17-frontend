@@ -44,6 +44,8 @@ import { FacturaComponent } from './muestras/factura/factura.component';
 import { Factura2Component } from './muestras/factura2/factura2.component';
 import { CatanaDetalleComponent } from './catana/catana-detalle/catana-detalle.component';
 import { CatanaListaComponent } from './catana/catana-lista/catana-lista.component';
+import { AnalisisDetailComponent } from './analisis/analisis-detail/analisis-detail.component';
+import { AnalisisListComponent } from './analisis/analisis-list/analisis-list.component';
 
 export const PagesRoutes: Routes = [
   { path: 'inicio', component: InicioComponent }, //, canActivate: [GuardService]
@@ -121,13 +123,15 @@ export const PagesRoutes: Routes = [
   //   ], //, canActivate: [GuardService]
   // },
   {
-    path: 'analisis',
+    path: 'analysis',
     component: AnalisisComponent,
     children: [
-      { path: 'nuevo', component: AnalisisEdicionComponent },
-      { path: 'edicion/:id', component: AnalisisEdicionComponent },
+      { path: 'new', component: AnalisisEdicionComponent },
+      { path: 'edit/:id', component: AnalisisEdicionComponent },
+      { path: 'detail/:id', component: AnalisisDetailComponent },
+      { path: 'list', component: AnalisisListComponent },
     ],
-    //      canActivate: [GuardService],
+    canActivate: [GuardService],
   }, //
   {
     path: 'doctor',
@@ -149,7 +153,7 @@ export const PagesRoutes: Routes = [
       { path: 'detail/:id', component: PacienteDetalleComponent },
       { path: 'list', component: PacienteListaComponent },
     ],
-    //      canActivate: [GuardService],
+    canActivate: [GuardService],
   },
   // { path: 'tipo', component: RegistroListarComponent },
   // { path: 'detalle-registro/:id', component: RegistroDetalleComponent }, // Ruta con parámetro 'id'
@@ -163,7 +167,7 @@ export const PagesRoutes: Routes = [
       { path: 'detail/:id', component: CatanaDetalleComponent },
       { path: 'list', component: CatanaListaComponent },
     ],
-    //      canActivate: [GuardService],
+    canActivate: [GuardService],
   }, //
   {
     path: 'type',

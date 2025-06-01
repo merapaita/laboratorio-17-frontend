@@ -20,6 +20,6 @@ export class AnalisisComponent implements OnInit {
     this.analisisService.getMensajeCambio().subscribe((texto) => {
       this.notificationService.show(texto, 'success');
     });
-    this.router.navigate(['/pages/analisis/list']);
+    this.router.navigate(['/pages/analysis/list']);
   }
 }

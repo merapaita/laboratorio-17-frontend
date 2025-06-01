@@ -14,7 +14,7 @@ export class AnalisisService extends GenericService<Analisis> {
   private mensajeCambio = new Subject<string>();
 
   constructor(http: HttpClient) {
-    super(http, `${variables.HOST}/analisis`);
+    super(http, `${variables.HOST}/analysis`);
   }
 
   listarPageable(_descripcion: string = '', p: number, s: number) {

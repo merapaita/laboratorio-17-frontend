@@ -16,7 +16,7 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './paciente-edicion.component.html',
-  styleUrl: './paciente-edicion.component.css',
+  styleUrl: './paciente-edicion.component.scss',
 })
 export class PacienteEdicionComponent {
   form: FormGroup;

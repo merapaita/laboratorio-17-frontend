@@ -8,7 +8,7 @@ import { CatanaService } from '../../_service/catana.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './catana.component.html',
-  styleUrl: './catana.component.css'
+  styleUrl: './catana.component.scss'
 })
 export class CatanaComponent implements OnInit {
 

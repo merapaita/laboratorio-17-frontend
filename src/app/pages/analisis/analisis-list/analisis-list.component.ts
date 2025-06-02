@@ -12,7 +12,7 @@ import { Analisis } from '../../../_model/analisis';
   standalone: true,
   imports: [FormsModule, NgFor, RouterLink, NgClass, DatePipe],
   templateUrl: './analisis-list.component.html',
-  styleUrl: './analisis-list.component.css',
+  styleUrl: './analisis-list.component.scss',
 })
 export class AnalisisListComponent implements OnInit {
   notifications: Notification[] = [];

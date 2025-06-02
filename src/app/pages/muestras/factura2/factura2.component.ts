@@ -29,7 +29,7 @@ interface Detalle {
   standalone: true,
   imports: [ReactiveFormsModule, NgClass, NgFor],
   templateUrl: './factura2.component.html',
-  styleUrl: './factura2.component.css',
+  styleUrl: './factura2.component.scss',
 })
 export class Factura2Component implements OnInit {
   form!: FormGroup;

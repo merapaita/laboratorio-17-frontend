@@ -7,7 +7,7 @@ import { NotificationComponent } from './pages/notification/notification.compone
   standalone: true,
   imports: [RouterOutlet, NotificationComponent],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.css'
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'prueba-temporal';

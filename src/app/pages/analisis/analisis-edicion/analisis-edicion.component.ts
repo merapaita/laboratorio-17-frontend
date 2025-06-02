@@ -1,33 +1,32 @@
-// import { Component, inject, OnInit } from '@angular/core';
-// import { ActivatedRoute, Router } from '@angular/router';
-// import { AnalisisService } from '../../../_service/analisis.service';
-// import { MedicoService } from '../../../_service/medico.service';
-// import { PacienteService } from '../../../_service/paciente.service';
-// import { CatanaService } from '../../../_service/catana.service';
-// import { ParmaeService } from '../../../_service/parmae.service';
+import { Component, inject, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { AnalisisService } from '../../../_service/analisis.service';
+import { MedicoService } from '../../../_service/medico.service';
+import { PacienteService } from '../../../_service/paciente.service';
+import { CatanaService } from '../../../_service/catana.service';
+import { ParmaeService } from '../../../_service/parmae.service';
 
-// @Component({
-//   selector: 'app-analisis-edicion',
-//   standalone: true,
-//   imports: [],
-//   templateUrl: './analisis-edicion.component.html',
-//   styleUrl: './analisis-edicion.component.css'
-// })
-// export class AnalisisEdicionComponent implements OnInit {
+@Component({
+  selector: 'app-analisis-edicion',
+  standalone: true,
+  imports: [],
+  templateUrl: './analisis-edicion.component.html',
+  styleUrl: './analisis-edicion.component.scss'
+})
+export class AnalisisEdicionComponent implements OnInit {
 
-//     private route = inject(ActivatedRoute),
-//     private analisisService = inject(AnalisisService);
-//     private medicoService = inject(MedicoService);
-//     private pacienteService =inject(PacienteService);
-//     private catanaService =inject(CatanaService);
-// //    private catmueService =inject(CatmueService);
-//     private parmaeService =inject(ParmaeService);
-//     private router =inject(Router);
+    private route = inject(ActivatedRoute);
+    private analisisService = inject(AnalisisService);
+    private medicoService = inject(MedicoService);
+    private pacienteService =inject(PacienteService);
+    private catanaService =inject(CatanaService);
+//    private catmueService =inject(CatmueService);
+    private parmaeService =inject(ParmaeService);
+    private router =inject(Router);
 
-//   constructor(
-//   ) { }
+  constructor() { }
 
-//   ngOnInit(): void {
+  ngOnInit(): void {
 //     this.descripcion = "";
 //     this.observ = "";
 
@@ -61,7 +60,7 @@
 //       this.edicion = data['id'] != null;
 //       this.initForm();
 //     });
-//   }
+  }
 
 //   initForm() {
 //     if (this.edicion) {
@@ -277,4 +276,4 @@
 //     return (this.idMedico === 0) || !this.pdni || !this.papellidos || !this.pnombres || !this.pdireccion || !this.pfecnac || !this.psexo || !this.codenv || !this.compag || this.monto === 0 || this.idCatmue === 0 || this.statSend;
 //     //    return true;
 //   }
-// }
+}

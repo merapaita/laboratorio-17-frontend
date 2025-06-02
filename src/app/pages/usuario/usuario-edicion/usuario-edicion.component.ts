@@ -20,7 +20,7 @@ import { RoleService } from '../../../_service/role.service';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink, AsyncPipe, NgFor],
   templateUrl: './usuario-edicion.component.html',
-  styleUrl: './usuario-edicion.component.css',
+  styleUrl: './usuario-edicion.component.scss',
 })
 export class UsuarioEdicionComponent implements OnInit {
   form: FormGroup;

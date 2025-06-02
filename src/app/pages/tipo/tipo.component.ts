@@ -8,7 +8,7 @@ import { NotificationService } from '../../_service/notification.service';
   standalone: true,
   imports: [RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './tipo.component.html',
-  styleUrl: './tipo.component.css'
+  styleUrl: './tipo.component.scss'
 })
 export class TipoComponent implements OnInit {
   notifications: Notification[] = [];

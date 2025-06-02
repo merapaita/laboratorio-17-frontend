@@ -1,0 +1,128 @@
+@use 'variables/typography.scss' as typo;
+
+@font-face {
+	// font-family: 'Poppins-Black';
+	font-family: typo.$main-family-black;
+	src: url('./fonts/Poppins-Black.ttf') format('truetype');
+	font-weight: 900;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-black-italic;
+	src: url('./fonts/Poppins-BlackItalic.ttf') format('truetype');
+	font-weight: 900;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-bold;
+	src: url('./fonts/Poppins-Bold.ttf') format('truetype');
+	font-weight: bold;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-bold-italic;
+	src: url('./fonts/Poppins-BoldItalic.ttf') format('truetype');
+	font-weight: bold;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-extra-bold;
+	src: url('./fonts/Poppins-ExtraBold.ttf') format('truetype');
+	font-weight: 800;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-extra-bold-italic;
+	src: url('./fonts/Poppins-ExtraBoldItalic.ttf') format('truetype');
+	font-weight: 800;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-extra-light;
+	src: url('./fonts/Poppins-ExtraLight.ttf') format('truetype');
+	font-weight: 200;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-extra-light-italic;
+	src: url('./fonts/Poppins-ExtraLightItalic.ttf') format('truetype');
+	font-weight: 200;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-italic;
+	src: url('./fonts/Poppins-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-light;
+	src: url('./fonts/Poppins-Light.ttf') format('truetype');
+	font-weight: 300;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-light-italic;
+	src: url('./fonts/Poppins-LightItalic.ttf') format('truetype');
+	font-weight: 300;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-medium;
+	src: url('./fonts/Poppins-Medium.ttf') format('truetype');
+	font-weight: 500;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-medium-italic;
+	src: url('./fonts/Poppins-MediumItalic.ttf') format('truetype');
+	font-weight: 500;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-regular;
+	src: url('./fonts/Poppins-Regular.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-semi-bold;
+	src: url('./fonts/Poppins-SemiBold.ttf') format('truetype');
+	font-weight: 600;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-semi-bold-italic;
+	src: url('./fonts/Poppins-SemiBoldItalic.ttf') format('truetype');
+	font-weight: 600;
+	font-style: italic;
+}
+
+@font-face {
+	font-family: typo.$main-family-thin;
+	src: url('./fonts/Poppins-Thin.ttf') format('truetype');
+	font-weight: 100;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: typo.$main-family-thin-italic;
+	src: url('./fonts/Poppins-ThinItalic.ttf') format('truetype');
+	font-weight: 100;
+	font-style: italic;
+}

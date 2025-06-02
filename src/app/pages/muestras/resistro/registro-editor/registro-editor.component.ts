@@ -27,7 +27,7 @@ interface Registro {
   standalone: true,
   imports: [ReactiveFormsModule],
   templateUrl: './registro-editor.component.html',
-  styleUrl: './registro-editor.component.css',
+  styleUrl: './registro-editor.component.scss',
 })
 export class RegistroEditorComponent implements OnInit, OnChanges {
   @Input() registroParaEditar: Registro | null = null; // Recibe el registro a editar (si existe)

@@ -6,7 +6,7 @@ import { ChangeDetectorRef, Component, Input } from '@angular/core';
   standalone: true,
   imports: [NgIf],    //MatFormFieldModule, MatInputModule, 
   templateUrl: './control-error.component.html',
-  styleUrl: './control-error.component.css'
+  styleUrl: './control-error.component.scss'
 })
 export class ControlErrorComponent {
 	textError = '';

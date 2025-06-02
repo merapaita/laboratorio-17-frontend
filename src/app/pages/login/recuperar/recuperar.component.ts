@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './recuperar.component.html',
-  styleUrl: './recuperar.component.css'
+  styleUrl: './recuperar.component.scss'
 })
 export class RecuperarComponent {
 

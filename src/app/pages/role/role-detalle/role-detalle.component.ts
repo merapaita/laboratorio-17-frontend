@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf],
   templateUrl: './role-detalle.component.html',
-  styleUrl: './role-detalle.component.css',
+  styleUrl: './role-detalle.component.scss',
 })
 export class RoleDetalleComponent implements OnInit {
   role: Role | undefined;

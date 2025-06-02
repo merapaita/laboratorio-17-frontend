@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf],
   templateUrl: './medico-detalle.component.html',
-  styleUrl: './medico-detalle.component.css',
+  styleUrl: './medico-detalle.component.scss',
 })
 export class MedicoDetalleComponent implements OnInit {
   medico: Medico | undefined;

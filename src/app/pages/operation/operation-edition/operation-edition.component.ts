@@ -22,7 +22,7 @@ import { FormSubmitDirective } from '../../commons/directivas/form-submit.direct
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, NgIf, AsyncPipe, NgFor, JsonPipe],
   templateUrl: './operation-edition.component.html',
-  styleUrl: './operation-edition.component.css',
+  styleUrl: './operation-edition.component.scss',
 })
 export class OperationEditionComponent implements OnInit {
   form: FormGroup;

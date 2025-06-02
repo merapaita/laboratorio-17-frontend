@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './permission-detail.component.html',
-  styleUrl: './permission-detail.component.css'
+  styleUrl: './permission-detail.component.scss'
 })
 export class PermissionDetailComponent {
 

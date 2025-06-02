@@ -8,7 +8,7 @@ import { RoleService } from '../../_service/role.service';
   standalone: true,
   imports: [RouterLink, RouterLinkActive, RouterOutlet],
   templateUrl: './role.component.html',
-  styleUrl: './role.component.css',
+  styleUrl: './role.component.scss',
 })
 export class RoleComponent implements OnInit {
   notifications: Notification[] = [];

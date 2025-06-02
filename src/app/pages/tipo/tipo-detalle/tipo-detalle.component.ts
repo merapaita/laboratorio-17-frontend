@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf],
   templateUrl: './tipo-detalle.component.html',
-  styleUrl: './tipo-detalle.component.css'
+  styleUrl: './tipo-detalle.component.scss'
 })
 export class TipoDetalleComponent implements OnInit {
   tipo: Tipo | undefined;

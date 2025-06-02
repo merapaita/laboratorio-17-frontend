@@ -17,7 +17,7 @@ import { NotificationService } from '../../../_service/notification.service';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './medico-edicion.component.html',
-  styleUrl: './medico-edicion.component.css',
+  styleUrl: './medico-edicion.component.scss',
 })
 export class MedicoEdicionComponent implements OnInit {
   form: FormGroup;

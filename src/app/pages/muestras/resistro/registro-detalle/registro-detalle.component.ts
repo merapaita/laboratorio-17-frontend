@@ -15,7 +15,7 @@ interface Registro {
   standalone: true,
   imports: [NgIf, RouterLink],
   templateUrl: './registro-detalle.component.html',
-  styleUrl: './registro-detalle.component.css'
+  styleUrl: './registro-detalle.component.scss'
 })
 export class RegistroDetalleComponent implements OnInit {
   registro: Registro | undefined;

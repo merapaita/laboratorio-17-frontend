@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf],
   templateUrl: './operation-detail.component.html',
-  styleUrl: './operation-detail.component.css'
+  styleUrl: './operation-detail.component.scss'
 })
 export class OperationDetailComponent implements OnInit {
   operation: Operation | undefined;

@@ -12,7 +12,7 @@ import { Operation } from '../../../_model/operation';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './operation-list.component.html',
-  styleUrl: './operation-list.component.css'
+  styleUrl: './operation-list.component.scss'
 })
 export class OperationListComponent implements OnInit {
   notifications: Notification[] = [];

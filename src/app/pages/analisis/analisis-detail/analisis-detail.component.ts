@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf, NgFor],
   templateUrl: './analisis-detail.component.html',
-  styleUrl: './analisis-detail.component.css'
+  styleUrl: './analisis-detail.component.scss'
 })
 export class AnalisisDetailComponent implements OnInit {
   analysis: Analisis | undefined;

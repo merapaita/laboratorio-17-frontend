@@ -12,7 +12,7 @@ import { Paciente } from '../../../_model/paciente';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './paciente-lista.component.html',
-  styleUrl: './paciente-lista.component.css',
+  styleUrl: './paciente-lista.component.scss',
 })
 export class PacienteListaComponent implements OnInit {
   notifications: Notification[] = [];

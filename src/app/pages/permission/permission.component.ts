@@ -8,7 +8,7 @@ import { NotificationService } from '../../_service/notification.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './permission.component.html',
-  styleUrl: './permission.component.css'
+  styleUrl: './permission.component.scss'
 })
 export class PermissionComponent implements OnInit {
   notifications: Notification[] = [];

@@ -9,7 +9,7 @@ import { NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf, NgFor],
   templateUrl: './catana-detalle.component.html',
-  styleUrl: './catana-detalle.component.css'
+  styleUrl: './catana-detalle.component.scss'
 })
 export class CatanaDetalleComponent implements OnInit {
   catana: Catana | undefined;

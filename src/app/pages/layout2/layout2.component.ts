@@ -7,7 +7,7 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
   standalone: true,
   imports: [NgClass, NgIf, RouterModule],
   templateUrl: './layout2.component.html',
-  styleUrl: './layout2.component.css'
+  styleUrl: './layout2.component.scss'
 })
 export class Layout2Component {
   isCollapsed = true;

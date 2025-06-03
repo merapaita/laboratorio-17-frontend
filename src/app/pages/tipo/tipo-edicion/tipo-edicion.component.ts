@@ -16,7 +16,7 @@ import { Tipo } from '../../../_model/tipo';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './tipo-edicion.component.html',
-  styleUrl: './tipo-edicion.component.css',
+  styleUrl: './tipo-edicion.component.scss',
 })
 export class TipoEdicionComponent implements OnInit {
   form: FormGroup;

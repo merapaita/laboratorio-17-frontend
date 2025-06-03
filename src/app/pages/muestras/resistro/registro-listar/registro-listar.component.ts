@@ -15,7 +15,7 @@ interface Registro {
   standalone: true,
   imports: [NgIf, NgFor, RegistroEditorComponent],
   templateUrl: './registro-listar.component.html',
-  styleUrl: './registro-listar.component.css'
+  styleUrl: './registro-listar.component.scss'
 })
 export class RegistroListarComponent {
   listaDeRegistros: Registro[] = [

@@ -1,0 +1,17 @@
+@use 'variables/typography.scss' as typo;
+/* You can add global styles to this file, and also import other style files */
+* {
+  font-family: typo.$main-family-regular, sans-serif ;  /*'Roboto'*/
+  font-size: 14px;
+  color: #3c3c3c;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.9em;
+  margin-top: 0.2em;
+}
+
+.actions {
+  margin-top: 1em;
+}

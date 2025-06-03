@@ -1,0 +1,5 @@
+@use '../../../styles/variables/typography.scss' as type;
+
+.ejemplo {
+    font-family: type.$google-font;
+}

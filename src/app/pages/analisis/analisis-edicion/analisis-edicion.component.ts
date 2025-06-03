@@ -135,7 +135,6 @@ export class AnalisisEdicionComponent implements OnInit {
   //    void {
   //     this.descripcion = "";
   //     this.observ = "";
-
   //     this.route.params.subscribe((data: Params) => {
   //       this.idAnalisis = data['id'];
   //       this.medicos$ = this.medicoService.listar();

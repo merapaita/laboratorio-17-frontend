@@ -17,7 +17,7 @@ import { Router, RouterLink } from '@angular/router';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './nuevo.component.html',
-  styleUrl: './nuevo.component.css',
+  styleUrl: './nuevo.component.scss',
 })
 export class NuevoComponent {
   form: FormGroup;

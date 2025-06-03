@@ -12,7 +12,7 @@ import { Role } from '../../../_model/role';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './role-lista.component.html',
-  styleUrl: './role-lista.component.css',
+  styleUrl: './role-lista.component.scss',
 })
 export class RoleListaComponent implements OnInit {
   notifications: Notification[] = [];

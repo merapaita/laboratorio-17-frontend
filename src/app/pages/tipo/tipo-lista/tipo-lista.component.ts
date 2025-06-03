@@ -12,7 +12,7 @@ import { Tipo } from '../../../_model/tipo';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './tipo-lista.component.html',
-  styleUrl: './tipo-lista.component.css'
+  styleUrl: './tipo-lista.component.scss'
 })
 export class TipoListaComponent implements OnInit {
   notifications: Notification[] = [];

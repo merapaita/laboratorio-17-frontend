@@ -9,7 +9,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
   standalone: true,
   imports: [NgIf],
   templateUrl: './usuario-detalle.component.html',
-  styleUrl: './usuario-detalle.component.css'
+  styleUrl: './usuario-detalle.component.scss'
 })
 export class UsuarioDetalleComponent {
 

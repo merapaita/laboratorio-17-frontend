@@ -8,7 +8,7 @@ import { AnalisisService } from '../../_service/analisis.service';
   standalone: true,
   imports: [RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './analisis.component.html',
-  styleUrl: './analisis.component.css',
+  styleUrl: './analisis.component.scss',
 })
 export class AnalisisComponent implements OnInit {
   notifications: Notification[] = [];

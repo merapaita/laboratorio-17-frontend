@@ -9,7 +9,7 @@ import { PacienteService } from '../../_service/paciente.service';
   standalone: true,
   imports: [FormsModule, RouterOutlet, RouterLink, RouterLinkActive],
   templateUrl: './paciente.component.html',
-  styleUrl: './paciente.component.css',
+  styleUrl: './paciente.component.scss',
 })
 export class PacienteComponent {
   notifications: Notification[] = [];

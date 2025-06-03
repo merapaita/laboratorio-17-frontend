@@ -21,7 +21,7 @@ import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, NgFor, RouterLink, AsyncPipe, JsonPipe],
   templateUrl: './catana-edicion.component.html',
-  styleUrl: './catana-edicion.component.css',
+  styleUrl: './catana-edicion.component.scss',
 })
 export class CatanaEdicionComponent implements OnInit {
   formMaestro: FormGroup;

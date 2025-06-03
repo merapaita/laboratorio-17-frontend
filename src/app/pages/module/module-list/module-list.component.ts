@@ -12,7 +12,7 @@ import { FormsModule, NgModel } from '@angular/forms';
   standalone: true,
   imports: [RouterLink, NgFor, FormsModule, NgClass],
   templateUrl: './module-list.component.html',
-  styleUrl: './module-list.component.css'
+  styleUrl: './module-list.component.scss'
 })
 export class ModuleListComponent implements OnInit {
   notifications: Notification[] = [];

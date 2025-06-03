@@ -17,7 +17,7 @@ import { Medico } from '../../../_model/medico';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './medico-lista.component.html',
-  styleUrl: './medico-lista.component.css',
+  styleUrl: './medico-lista.component.scss',
 })
 export class MedicoListaComponent implements OnInit {
   notifications: Notification[] = [];

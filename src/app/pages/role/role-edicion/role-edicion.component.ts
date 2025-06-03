@@ -16,7 +16,7 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, NgIf],
   templateUrl: './role-edicion.component.html',
-  styleUrl: './role-edicion.component.css',
+  styleUrl: './role-edicion.component.scss',
 })
 export class RoleEdicionComponent implements OnInit {
   form: FormGroup;

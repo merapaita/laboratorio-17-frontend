@@ -12,7 +12,7 @@ import { NgClass, NgFor } from '@angular/common';
   standalone: true,
   imports: [FormsModule, RouterLink, NgClass, NgFor],
   templateUrl: './usuario-lista.component.html',
-  styleUrl: './usuario-lista.component.css',
+  styleUrl: './usuario-lista.component.scss',
 })
 export class UsuarioListaComponent {
   notifications: Notification[] = [];

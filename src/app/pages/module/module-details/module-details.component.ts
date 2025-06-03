@@ -9,7 +9,7 @@ import { NgIf } from '@angular/common';
   standalone: true,
   imports: [NgIf],
   templateUrl: './module-details.component.html',
-  styleUrl: './module-details.component.css'
+  styleUrl: './module-details.component.scss'
 })
 export class ModuleDetailsComponent {
   module: Module | undefined;

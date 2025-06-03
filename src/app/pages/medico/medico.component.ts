@@ -8,7 +8,7 @@ import { Notification, NotificationService } from '../../_service/notification.s
   standalone: true,
   imports: [RouterModule],
   templateUrl: './medico.component.html',
-  styleUrl: './medico.component.css'
+  styleUrl: './medico.component.scss'
 })
 export class MedicoComponent implements OnInit {
 

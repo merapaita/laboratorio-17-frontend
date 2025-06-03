@@ -8,7 +8,7 @@ import { NotificationService } from '../../_service/notification.service';
   standalone: true,
   imports: [RouterLink, RouterOutlet, RouterLinkActive],
   templateUrl: './module.component.html',
-  styleUrl: './module.component.css'
+  styleUrl: './module.component.scss'
 })
 export class ModuleComponent implements OnInit {
   notifications: Notification[] = [];

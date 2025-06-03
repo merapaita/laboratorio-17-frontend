@@ -15,7 +15,7 @@ import { SavePermission } from '../../../_model/savePermission';
   standalone: true,
   imports: [RouterLink, ReactiveFormsModule, NgIf, AsyncPipe, NgFor, JsonPipe],
   templateUrl: './permission-edit.component.html',
-  styleUrl: './permission-edit.component.css'
+  styleUrl: './permission-edit.component.scss'
 })
 export class PermissionEditComponent implements OnInit {
   form: FormGroup;

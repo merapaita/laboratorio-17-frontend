@@ -9,7 +9,7 @@ import { PacienteService } from '../../../_service/paciente.service';
   standalone: true,
   imports: [NgIf],
   templateUrl: './paciente-detalle.component.html',
-  styleUrl: './paciente-detalle.component.css'
+  styleUrl: './paciente-detalle.component.scss'
 })
 export class PacienteDetalleComponent implements OnInit {
   paciente: Paciente | undefined;

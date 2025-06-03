@@ -7,7 +7,7 @@ import { NgClass, NgFor } from '@angular/common';
   standalone: true,
   imports: [NgFor, NgClass],
   templateUrl: './notification.component.html',
-  styleUrl: './notification.component.css'
+  styleUrl: './notification.component.scss'
 })
 export class NotificationComponent implements OnInit {
   notifications: Notification[] = [];

@@ -5,7 +5,7 @@ import { Component } from '@angular/core';
   standalone: true,
   imports: [],
   templateUrl: './not404.component.html',
-  styleUrl: './not404.component.css'
+  styleUrl: './not404.component.scss'
 })
 export class Not404Component {
 

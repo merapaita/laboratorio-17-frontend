@@ -13,7 +13,7 @@ import { ShowPermission } from '../../../_model/showPermission';
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './permission-list.component.html',
-  styleUrl: './permission-list.component.css',
+  styleUrl: './permission-list.component.scss',
 })
 export class PermissionListComponent implements OnInit {
   notifications: Notification[] = [];

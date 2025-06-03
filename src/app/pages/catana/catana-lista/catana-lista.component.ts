@@ -12,7 +12,7 @@ import { RouterLink } from '@angular/router';
   standalone: true,
   imports: [FormsModule, NgFor, RouterLink, NgClass],
   templateUrl: './catana-lista.component.html',
-  styleUrl: './catana-lista.component.css'
+  styleUrl: './catana-lista.component.scss'
 })
 export class CatanaListaComponent implements OnInit {
   notifications: Notification[] = [];

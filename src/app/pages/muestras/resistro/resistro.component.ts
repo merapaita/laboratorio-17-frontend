@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
   standalone: true,
   imports: [],
   templateUrl: './resistro.component.html',
-  styleUrl: './resistro.component.css',
+  styleUrl: './resistro.component.scss',
 })
 export class ResistroComponent {
   

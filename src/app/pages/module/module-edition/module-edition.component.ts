@@ -10,7 +10,7 @@ import { Module } from '../../../_model/module';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, RouterLink],
   templateUrl: './module-edition.component.html',
-  styleUrl: './module-edition.component.css'
+  styleUrl: './module-edition.component.scss'
 })
 export class ModuleEditionComponent implements OnInit {
   form: FormGroup;

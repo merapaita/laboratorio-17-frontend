@@ -47,6 +47,7 @@ export class AnalisisEdicionComponent implements OnInit {
   titulo = 'NUEVO REGISTRO';
   medicos$ = new Observable<Medico[]>();
   pacientes$ = new Observable<Paciente[]>();
+  isDarkMode = false;
 
   constructor() {
     this.formMaestro = this.formBuilder.group({

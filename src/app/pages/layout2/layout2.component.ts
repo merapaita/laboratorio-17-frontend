@@ -11,9 +11,14 @@ import { RouterLink, RouterLinkActive, RouterModule, RouterOutlet } from '@angul
 })
 export class Layout2Component {
   isCollapsed = true;
+  isDarkMode = true;
 
   toggleSidebar() {
     this.isCollapsed = !this.isCollapsed;
   }
 
+  toggleTheme() {
+    this.isDarkMode = !this.isDarkMode;
+  }
+  
 }

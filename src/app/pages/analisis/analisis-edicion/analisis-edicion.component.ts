@@ -25,7 +25,7 @@ import { Paciente } from '../../../_model/paciente';
   standalone: true,
   imports: [ReactiveFormsModule, NgIf, NgFor, RouterLink, AsyncPipe, JsonPipe],
   templateUrl: './analisis-edicion.component.html',
-  styleUrl: './analisis-edicion.component.css',
+  styleUrl: './analisis-edicion.component.scss',
 })
 export class AnalisisEdicionComponent implements OnInit {
   private route = inject(ActivatedRoute);

@@ -1,3 +1,4 @@
+import { Catana } from './catana';
 import { Catmue } from './catmue';
 import { Iteana } from './iteana';
 import { Medico } from './medico';
@@ -8,6 +9,7 @@ export interface Analisis {
   medico: Medico;
   paciente: Paciente;
   catmue:Catmue;
+  catana:Catana[];
   fecha: string;
   descripcion: string;
   codenv: string;
@@ -17,5 +19,3 @@ export interface Analisis {
   telefono:string;
   detiteana: Iteana[];
 }
-
-//	private Catmue catmue;

@@ -1,0 +1,47 @@
+<div class="container">
+    <div class="row mt-2">
+        <div class="col-10 mx-auto">
+            <form [formGroup]="formMaestro">
+                <div class="text-center pt-3 mb-3">
+                    <h1>{{titulo}}</h1>
+                </div>
+                <div class="row">
+                    <div class="form-floating col-3 mb-3">
+                        <input type="text" class="form-control" id="role" placeholder="role" formControlName="role">
+                        <label for="role" class="form-label">role</label>
+                    </div>
+                </div>
+                <div class="detalle">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>Module</th>
+                                <th>Name</th>
+                                <th>HttpMethod</th>
+                                <th>PermitAll</th>
+                                <th>select</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="operations">
+                            <tr *ngFor="let operation of operations?.controls; let i = index" [formGroupName]="i">
+                                <td>{{ operation.get('module')?.value.id }} - {{ operation.get('module')?.value.name }}</td>
+                                <td>{{ operation.get('name')?.value}}</td>
+                                <td>{{ operation.get('httpMethod')?.value}}</td>
+                                <td>{{ operation.get('permitAll')?.value }}</td>
+                                <td>
+                                    <input type="checkbox" class="form-check-input" formControlName="select">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-primary mb-3" [disabled]="formMaestro.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/role/lista'
+                        type="button">Cancelar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

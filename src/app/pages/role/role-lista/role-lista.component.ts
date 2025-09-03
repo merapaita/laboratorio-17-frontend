@@ -6,6 +6,8 @@ import { RoleService } from '../../../_service/role.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { FormsModule } from '@angular/forms';
 import { Role } from '../../../_model/role';
+import { PermissionService } from '../../../_service/permission.service';
+import { ShowPermission } from '../../../_model/showPermission';
 
 @Component({
   selector: 'app-role-lista',
@@ -20,11 +22,17 @@ export class RoleListaComponent implements OnInit {
 
   private roleService = inject(RoleService);
   private notificationService = inject(NotificationService);
+  permissionService = inject(PermissionService);
+  permissions:ShowPermission[]|undefined;
 
   _text = '';
   roles: Array<Role> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this.permissions = data;
+    });
+
     this.changePage(this.numberPage);
   }
 
@@ -47,24 +55,22 @@ export class RoleListaComponent implements OnInit {
   }
 
   changePage(page: number) {
-    this.roleService
-      .listarPageable(page, this.size)
-      .subscribe((data) => {
-        //        console.log(data);
-        this.roles = data.content;
-        this.isFirst = data.first;
-        this.isLast = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-        this.numberPage = data.number;
-        this._numberPage = data.number + 1;
-        // this.iniPagina = data.number * data.size + 1;
-        // this.finPagina =
-        //   (data.number + 1) * 10 < data.totalElements
-        //     ? (data.number + 1) * 10
-        //     : this.totalElements;
-        // this.txtPagina = data.number + 1;
-      });
+    this.roleService.listarPageable(page, this.size).subscribe((data) => {
+      //        console.log(data);
+      this.roles = data.content;
+      this.isFirst = data.first;
+      this.isLast = data.last;
+      this.totalPages = data.totalPages;
+      this.totalElements = data.totalElements;
+      this.numberPage = data.number;
+      this._numberPage = data.number + 1;
+      // this.iniPagina = data.number * data.size + 1;
+      // this.finPagina =
+      //   (data.number + 1) * 10 < data.totalElements
+      //     ? (data.number + 1) * 10
+      //     : this.totalElements;
+      // this.txtPagina = data.number + 1;
+    });
     this._validNumberPage();
     //      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
   }
@@ -87,5 +93,9 @@ export class RoleListaComponent implements OnInit {
     if (this._validPage && this._numberPage !== null) {
       this.changePage(this._numberPage);
     }
+  }
+
+  isOperation(operation:string) {
+    return this.permissions?.some(reg => reg.operation === operation);
   }
 }

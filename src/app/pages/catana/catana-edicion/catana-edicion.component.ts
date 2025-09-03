@@ -13,7 +13,7 @@ import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CatanaService } from '../../../_service/catana.service';
 import { Tipo } from '../../../_model/tipo';
 import { filter, map, Observable, pipe, single, switchMap } from 'rxjs';
-import { TipoService } from '../../../_service/tip.service';
+import { TipoService } from '../../../_service/tipo.service';
 import { AsyncPipe, JsonPipe, NgFor, NgIf } from '@angular/common';
 
 @Component({

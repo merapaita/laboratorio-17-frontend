@@ -30,13 +30,17 @@
                     <td>{{medico.apellidos}}</td>
                     <td>{{medico.nombres}}</td>
                     <td>
-                        <button class="btn btn-outline-primary" routerLink="/pages/doctor/detail/{{medico.idMedico}}"><i
-                                class="far fa-eye"></i> Ver</button>
-                        <button class="btn btn-outline-warning"
-                            [routerLink]="['/pages/doctor/edit', medico.idMedico]"><i class="far fa-edit"></i>
-                            Editar</button>
-                        <!-- <button class="btn btn-outline-danger" (click)="elimina(ingreso.iding)"><i class="far fa-trash-alt"></i>
-                        Eliminar</button> -->
+                        @if (isOperation("READ_ONE_DOCTOR")) {
+                            <button class="btn btn-outline-primary" routerLink="/pages/doctor/detail/{{medico.idMedico}}"><i
+                                    class="far fa-eye"></i> Ver</button>
+                        }
+                        @if (isOperation("UPDATE_ONE_DOCTOR")) {
+                            <button class="btn btn-outline-warning"
+                                [routerLink]="['/pages/doctor/edit', medico.idMedico]"><i class="far fa-edit"></i>
+                                Editar</button>
+                            <!-- <button class="btn btn-outline-danger" (click)="elimina(ingreso.iding)"><i class="far fa-trash-alt"></i>
+                            Eliminar</button> -->
+                        }
                     </td>
                 </tr>
             </tbody>

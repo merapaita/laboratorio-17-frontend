@@ -6,6 +6,7 @@ import { Subject } from 'rxjs';
 import { ShowPermission } from '../_model/showPermission';
 import { ReqPageable } from '../_model';
 import { SavePermission } from '../_model/savePermission';
+import { PermissionDto } from '../_model/permissionDto';
 
 @Injectable({
   providedIn: 'root',
@@ -14,16 +15,17 @@ export class PermissionService {
   private url: string = `${variables.HOST}/permissions`;
   private http = inject(HttpClient);
 
-  private permissionCambio: Subject<ShowPermission[]> = new Subject<ShowPermission[]>();
+  private permissionCambio: Subject<ShowPermission[]> = new Subject<
+    ShowPermission[]
+  >();
   private mensajeCambio: Subject<string> = new Subject<string>();
 
   listar(role: string = '') {
-    return this.http.get<ShowPermission>(`${this.url}/pageable?role=${role}`);
+    return this.http.get<ShowPermission[]>(`${this.url}?role=${role}`);
   }
 
   listPageable(role: string = '', p: number, s: number) {
-    return this.http.get<ReqPageable>(
-      `${this.url}/pageable?role=${role}&page=${p}&size=${s}`
+    return this.http.get<ReqPageable>(`${this.url}/pageable?role=${role}&page=${p}&size=${s}`
     );
   }
 
@@ -33,6 +35,10 @@ export class PermissionService {
 
   registrarNvo(permission: SavePermission) {
     return this.http.post<ShowPermission>(this.url, permission);
+  }
+
+  registerPermissionPerRole(permission: PermissionDto) {
+    return this.http.post<PermissionDto>(`${this.url}/role`, permission);
   }
 
   //   modificarNvo(t: T) {

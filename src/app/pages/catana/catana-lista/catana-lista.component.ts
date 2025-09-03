@@ -1,3 +1,4 @@
+import { ShowPermission } from './../../../_model/showPermission';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ReqPageable } from '../../../_model';
@@ -6,13 +7,14 @@ import { NotificationService } from '../../../_service/notification.service';
 import { Catana } from '../../../_model/catana';
 import { NgClass, NgFor } from '@angular/common';
 import { RouterLink } from '@angular/router';
+import { PermissionService } from '../../../_service/permission.service';
 
 @Component({
   selector: 'app-catana-lista',
   standalone: true,
   imports: [FormsModule, NgFor, RouterLink, NgClass],
   templateUrl: './catana-lista.component.html',
-  styleUrl: './catana-lista.component.scss'
+  styleUrl: './catana-lista.component.scss',
 })
 export class CatanaListaComponent implements OnInit {
   notifications: Notification[] = [];
@@ -20,18 +22,23 @@ export class CatanaListaComponent implements OnInit {
 
   private catanaService = inject(CatanaService);
   private notificationService = inject(NotificationService);
+  private permission: ShowPermission[] | undefined;
+  private permissionService = inject(PermissionService);
 
   _descripcion = '';
   _text = '';
   catanas: Array<Catana> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this.permission = data;
+    });
     this.changePage(this.numberPage);
   }
 
   numberPage = 0;
-  _numberPage = 1;    // para la vista
-  _validPage = true;  // para la
+  _numberPage = 1; // para la vista
+  _validPage = true; // para la
 
   size = 10;
   isFirst = true;
@@ -51,7 +58,7 @@ export class CatanaListaComponent implements OnInit {
     this.catanaService
       .listarPageable(this._descripcion, page, this.size)
       .subscribe((data) => {
-//        console.log(data);
+        //        console.log(data);
         this.catanas = data.content;
         this.isFirst = data.first;
         this.isLast = data.last;
@@ -66,15 +73,15 @@ export class CatanaListaComponent implements OnInit {
         //     : this.totalElements;
         // this.txtPagina = data.number + 1;
       });
-      this._validNumberPage();
-//      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
+    this._validNumberPage();
+    //      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
   }
 
   busca() {
     this.catanaService
       .listarPageable(this._descripcion, this.numberPage, this.size)
       .subscribe((data) => {
-//        console.log(data);
+        //        console.log(data);
         this.catanas = data.content;
         this.isFirst = data.first;
         this.isLast = data.last;
@@ -89,19 +96,21 @@ export class CatanaListaComponent implements OnInit {
         //     : this.totalElements;
         // this.txtPagina = data.number + 1;
       });
-      this._validNumberPage();
+    this._validNumberPage();
   }
 
   pages(): number {
-    let xx =  Math.ceil(this.totalElements / this.size)-1;
-//    console.log("xx:", xx);
+    let xx = Math.ceil(this.totalElements / this.size) - 1;
+    //    console.log("xx:", xx);
     return xx;
   }
 
   _validNumberPage() {
     const total = this.pages();
     this._validPage =
-    this._numberPage !== null && this._numberPage >= 0 && (this._numberPage - 1) <= total;
+      this._numberPage !== null &&
+      this._numberPage >= 0 &&
+      this._numberPage - 1 <= total;
   }
 
   irAPagina() {
@@ -110,4 +119,7 @@ export class CatanaListaComponent implements OnInit {
     }
   }
 
+  isOperation(operation: string) {
+    return this.permission?.some((reg) => reg.operation === operation);
+  }
 }

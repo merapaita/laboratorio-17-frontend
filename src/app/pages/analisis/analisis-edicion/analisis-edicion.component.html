@@ -1,8 +1,8 @@
 <div class="container">
-    <div class="row mt-5">
+    <div class="row mt-2">
         <div class="col-10 mx-auto">
             <form [formGroup]="formMaestro">
-                <div class="text-center mb-3">
+                <div class="text-center pt-3 mb-3">
                     <h1>{{titulo}}</h1>
                 </div>
                 <div class="row">
@@ -13,10 +13,10 @@
                     </div>
                     <div class="form-floating col-3 mb-3">
                         <input type="date" class="form-control" id="fecha" placeholder="fecha" formControlName="fecha">
-                        <label for="descripcion" class="form-label">fecha</label>
+                        <label for="fecha" class="form-label">fecha</label>
                         <div *ngIf="formMaestro.get('fecha')?.invalid && (formMaestro.get('fecha')?.dirty || formMaestro.get('fecha')?.touched)"
                             class="error-message">
-                            <small *ngIf="formMaestro.get('fecha')?.errors?.['required']">El medico es
+                            <small *ngIf="formMaestro.get('fecha')?.errors?.['required']">La fecha es
                                 obligatorio.</small>
                         </div>
                         <div *ngIf="formMaestro.get('fecha')?.errors?.['pattern']" class="error-message">
@@ -56,6 +56,7 @@
                         </div>
                     </fieldset>
                     <fieldset formGroupName="paciente" class="row">
+                        <legend>Paciente</legend>
                         <div class="form-floating col-3 mb-3" hidden>
                             <input type="hidden" class="form-control" id="idPaciente" placeholder="idPaciente"
                                 formControlName="idPaciente">
@@ -134,7 +135,7 @@
                         </div>
                         <div class="form-floating col-3 mb-3">
                             <input type="date" class="form-control" id="fecnac" placeholder="fecnac"
-                                formControlName="fecnac">
+                                formControlName="fecnac" (change)="calculaEdad()">
                             <label for="fecnac" class="form-label">fecnac</label>
                             <div *ngIf="formMaestro.get('paciente.fecnac')?.invalid && (formMaestro.get('paciente.fecnac')?.dirty || formMaestro.get('paciente.fecnac')?.touched)"
                                 class="error-message">
@@ -159,32 +160,31 @@
                             </div>
                         </div>
                         <!-- <div class="col-6 mb-3"> -->
-                            <fieldset class="col-6 mb-3">
-                                <legend>Sexo:</legend>
-                                <div>
-                                    <label>
-                                        <input type="radio" name="sexo" formControlName="sexo" value="M">
-                                        Masculino
-                                    </label>
-                                </div>
-                                <div>
-                                    <label>
-                                        <input type="radio" name="sexo" formControlName="sexo" value="F">
-                                        Femenino
-                                    </label>
-                                </div>
+                        <fieldset class="col-6 mb-3">
+                            <legend>Sexo:</legend>
+                            <div>
+                                <label>
+                                    <input type="radio" name="sexo" formControlName="sexo" value="M">
+                                    Masculino
+                                </label>
+                            </div>
+                            <div>
+                                <label>
+                                    <input type="radio" name="sexo" formControlName="sexo" value="F">
+                                    Femenino
+                                </label>
+                            </div>
 
-                                <div *ngIf="formMaestro.get('paciente.sexo')?.invalid && (formMaestro.get('paciente.sexo')?.dirty || formMaestro.get('paciente.sexo')?.touched)"
-                                    class="error-message">
-                                    <small *ngIf="formMaestro.get('paciente.sexo')?.errors?.['required']">El campo sexo
-                                        es
-                                        obligatorio.</small>
-                                </div>
-                                <div *ngIf="formMaestro.get('paciente.sexo')?.errors?.['pattern']"
-                                    class="error-message">
-                                    error de formato
-                                </div>
-                            </fieldset>
+                            <div *ngIf="formMaestro.get('paciente.sexo')?.invalid && (formMaestro.get('paciente.sexo')?.dirty || formMaestro.get('paciente.sexo')?.touched)"
+                                class="error-message">
+                                <small *ngIf="formMaestro.get('paciente.sexo')?.errors?.['required']">El campo sexo
+                                    es
+                                    obligatorio.</small>
+                            </div>
+                            <div *ngIf="formMaestro.get('paciente.sexo')?.errors?.['pattern']" class="error-message">
+                                error de formato
+                            </div>
+                        </fieldset>
                         <!-- </div> -->
                     </fieldset>
                     <div class="form-floating col-3 mb-3">
@@ -226,6 +226,59 @@
                             error de formato
                         </div>
                     </div>
+                    <fieldset formGroupName="catana" class="col-3">
+                        <div class="form-floating mb-3">
+                            <select class="form-select" formControlName="idCatana" (change)="selecCatana()">
+                                <option *ngFor="let t of (catanas$ | async)" [value]="t.idCatana">
+                                    {{t.idCatana}} {{t.descripcion}}
+                                </option>
+                            </select>
+                            <label for="idCatana" class="form-label">Catalogo</label>
+                        </div>
+                    </fieldset>
+                    <!-- <div *ngIf="formMaestro.get('medico.idMedico')?.invalid && (formMaestro.get('medico.idMedico')?.dirty || formMaestro.get('medico.idMedico')?.touched)"
+                            class="error-message">
+                            <small *ngIf="formMaestro.get('medico.idMedico')?.errors?.['required']">El medico es
+                                obligatorio.</small>
+                        </div>
+                        <div *ngIf="formMaestro.get('medico.idMedico')?.errors?.['pattern']" class="error-message">
+                            error de formato
+                        </div> -->
+
+                </div>
+                <div class="detalle">
+                    <table class="table table-dark table-striped">
+                        <thead>
+                            <tr>
+                                <th>item</th>
+                                <th>Tipo</th>
+                                <th>Examen</th>
+                                <th>Resultado</th>
+                                <th>Unidad</th>
+                                <th>Val. referencia</th>
+                            </tr>
+                        </thead>
+                        <tbody formArrayName="detiteana">
+                            <tr *ngFor="let detalle of detiteana?.controls; let i = index" [formGroupName]="i">
+                                <td>{{ detalle.get('examen')?.value.item }}</td>
+                                <td>{{ detalle.get('examen')?.value.tipo.descripcion }}</td>
+                                <td>{{ detalle.get('examen')?.value.descripcion }}</td>
+                                <td>
+                                    <input type="text" class="form-control" placeholder="resultado"
+                                        formControlName="resultado">
+                                    <!-- {{ detalle.get('resultado')?.value }} -->
+                                </td>
+                                <td>{{ detalle.get('examen')?.value.unidad }}</td>
+                                <td>{{ detalle.get('examen')?.value.valref }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="text-center">
+                    <button class="btn btn-outline-primary mb-3" [disabled]="formMaestro.invalid" type="button"
+                        (click)="aceptar()">Aceptar</button>
+                    <button class="btn btn-outline-danger mb-3" routerLink='/pages/analysis/list'
+                        type="button">Cancelar</button>
                 </div>
             </form>
         </div>
@@ -249,41 +302,6 @@
                 maxlength="100">
         </mat-form-field>
     </mat-card-content>
-
-    <mat-table [dataSource]="detiteana">
-        <ng-container matColumnDef="examen.item" class="cssItem">
-            <mat-header-cell *matHeaderCellDef> Item </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem"> {{rowItem.examen.item}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="examen.medico.descripcion">
-            <mat-header-cell *matHeaderCellDef> Tipo </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem">{{rowItem.examen.tipo.idTipo}} - {{rowItem.examen.tipo.descripcion}}
-            </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="examen.descripcion">
-            <mat-header-cell *matHeaderCellDef> Examen </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem"> {{rowItem.examen.descripcion}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="resultado">
-            <mat-header-cell *matHeaderCellDef> Resultado </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem">
-                <mat-form-field class="example-full-width">
-                    <input matInput [(ngModel)]="rowItem.resultado" maxlength="50" (ngModelChange)="calculaFormula()"
-                        pattern="[a-zA-Z0-9 ]{0,50}">
-                </mat-form-field>
-            </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="examen.valref">
-            <mat-header-cell *matHeaderCellDef> Val. Referencia </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem"> {{rowItem.examen.valref}} </mat-cell>
-        </ng-container>
-        <ng-container matColumnDef="examen.unidad">
-            <mat-header-cell *matHeaderCellDef> Unidad </mat-header-cell>
-            <mat-cell *matCellDef="let rowItem"> {{rowItem.examen.unidad}} </mat-cell>
-        </ng-container>
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let rowItem; columns: displayedColumns;"></mat-row>
-    </mat-table>
 
     <mat-card-actions>
         <button mat-raised-button color="primary" (click)="aceptar()" [disabled]="estadoBotonRegistrar()">

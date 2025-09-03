@@ -1,3 +1,4 @@
+import { ShowPermission } from './../../../_model/showPermission';
 import { NgClass, NgFor } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -6,6 +7,7 @@ import { ReqPageable } from '../../../_model';
 import { PacienteService } from '../../../_service/paciente.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { Paciente } from '../../../_model/paciente';
+import { PermissionService } from '../../../_service/permission.service';
 
 @Component({
   selector: 'app-paciente-lista',
@@ -20,6 +22,8 @@ export class PacienteListaComponent implements OnInit {
 
   private pacienteService = inject(PacienteService);
   private notificationService = inject(NotificationService);
+  private permissions : ShowPermission[]|undefined;
+  private permissionService = inject(PermissionService);
 
   _nombre = '';
   _apellido = '';
@@ -27,6 +31,9 @@ export class PacienteListaComponent implements OnInit {
   pacientes: Array<Paciente> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe(data => {
+      this.permissions = data;
+    });
     this.changePage(this.numberPage);
   }
 
@@ -114,5 +121,9 @@ export class PacienteListaComponent implements OnInit {
         this.numberPage = data.number;
         this._numberPage = data.number + 1;
       });
+  }
+
+  isOperation(operation:string) {
+    return this.permissions?.some(reg => reg.operation === operation);
   }
 }

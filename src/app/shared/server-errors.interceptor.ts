@@ -60,7 +60,7 @@ export const ServerErrorsInterceptorFn:HttpInterceptorFn = (request, next) => {
         //         }))
         }
         else if (err.status === 500) {
-            notificationService.show(err.message, 'error');
+            notificationService.show(err.error.message, 'error');
 //          console.log(err)
 //            snackBar.open(err.status, 'ERROR 500', { duration: 5000 });
         } else {

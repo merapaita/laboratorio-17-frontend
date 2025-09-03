@@ -10,24 +10,31 @@
             </button>
         </div>
         <ul class="sidebar-nav">
+            @if (isModule('TIPO')) {
             <li class="sidebar-item">
                 <a routerLink="/pages/type" class="sidebar-link">
                     <i class='bx bxs-user-account'></i>
                     <span>Tipos</span>
                 </a>
             </li>
+            }
+            @if (isModule('CATANA')) {
             <li class="sidebar-item">
                 <a routerLink="/pages/catana" class="sidebar-link">
                     <i class='bx bxs-layer'></i>
                     <span>Catalogo de Analisis</span>
                 </a>
             </li>
+            }
+            @if (isModule('ANALISIS')) {
             <li class="sidebar-item">
                 <a routerLink="/pages/analysis" class="sidebar-link">
                     <i class='bx bxs-layer'></i>
                     <span>Analisis</span>
                 </a>
             </li>
+            }
+
             <li class="sidebar-item">
                 <a href="#" class="sidebar-link collapsed has-dropdown" data-bs-toggle="collapse"
                     data-bs-target="#catalogo" aria-expanded="false" aria-controls="auth">
@@ -35,16 +42,21 @@
                     <span>Tablas y Catalogos</span>
                 </a>
                 <ul id="catalogo" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+
+                    @if (isModule('MEDICO')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/doctor" class="sidebar-link">
                             Medicos
                         </a>
                     </li>
+                    }
+                    @if (isModule('PACIENTE')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/patient" class="sidebar-link">
                             Pacientes
                         </a>
                     </li>
+                    }
                 </ul>
             </li>
             <li class="sidebar-item">
@@ -54,31 +66,41 @@
                     <span>Seguridad</span>
                 </a>
                 <ul id="auth" class="sidebar-dropdown list-unstyled collapse" data-bs-parent="#sidebar">
+                    @if (isModule('CUSTOMER')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/user" class="sidebar-link">
                             Usuarios
                         </a>
                     </li>
+                    }
+                    @if (isModule('ROLES')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/role" class="sidebar-link">
                             Roles
                         </a>
                     </li>
+                    }
+                    @if (isModule('MODULES')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/module" class="sidebar-link">
                             Module
                         </a>
                     </li>
+                    }
+                    @if (isModule('OPERATIONS')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/operation" class="sidebar-link">
                             Operations
                         </a>
                     </li>
+                    }
+                    @if (isModule('PERMISSIONS')) {
                     <li class="sidebar-item">
                         <a routerLink="/pages/permission" class="sidebar-link">
                             Permisos
                         </a>
                     </li>
+                    }
                 </ul>
             </li>
 
@@ -165,7 +187,7 @@
                 </ul>
             </div>
         </nav>
-        <main class="content px-3 py-4 layout-fondo">
+        <main class="content layout-fondo">
             <div class="container-fluid">
                 <router-outlet></router-outlet>
             </div>

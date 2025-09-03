@@ -1,7 +1,7 @@
-//import { Medico, ReqPageable } from './../../../_model/request-pageable';
+import { ShowPermission } from './../../../_model/showPermission';
 import { NgClass, NgFor } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
-import { FormsModule, NgModel } from '@angular/forms';
+import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MedicoService } from '../../../_service/medico.service';
 import {
@@ -10,7 +10,7 @@ import {
 } from '../../../_service/notification.service';
 import { ReqPageable } from '../../../_model';
 import { Medico } from '../../../_model/medico';
-//import { ReqPageable, Medico } from '../../../_model';
+import { PermissionService } from '../../../_service/permission.service';
 
 @Component({
   selector: 'app-medico-lista',
@@ -25,6 +25,8 @@ export class MedicoListaComponent implements OnInit {
 
   private medicoService = inject(MedicoService);
   private notificationService = inject(NotificationService);
+  private permissions: ShowPermission[] | undefined;
+  private permissionService = inject(PermissionService);
 
   _nombre = '';
   _apellido = '';
@@ -32,6 +34,9 @@ export class MedicoListaComponent implements OnInit {
   medicos: Array<Medico> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this.permissions = data;
+    });
     // this.medicoService.getMensajeCambio().subscribe((_text) => {
     //   this.notificationService.show(_text, 'success');
     // });
@@ -43,9 +48,8 @@ export class MedicoListaComponent implements OnInit {
     this.medicoService
       .listarPageable(this._apellido, this._nombre, this.numberPage, this.size)
       .subscribe((data) => {
-//        console.log('data:', data);
+        //        console.log('data:', data);
         //      this.socio = data.content;
-
         // this.totRegistros = data.totalElements;
         // this.dataSource = new MatTableDataSource(data.content);
         // this.idPagina = (0);
@@ -53,8 +57,8 @@ export class MedicoListaComponent implements OnInit {
   }
 
   numberPage = 0;
-  _numberPage = 1;    // para la vista
-  _validPage = true;  // para la
+  _numberPage = 1; // para la vista
+  _validPage = true; // para la
 
   size = 10;
   isFirst = true;
@@ -74,7 +78,7 @@ export class MedicoListaComponent implements OnInit {
     this.medicoService
       .listarPageable(this._apellido, this._nombre, page, this.size)
       .subscribe((data) => {
-//        console.log(data);
+        //        console.log(data);
         this.medicos = data.content;
         this.isFirst = data.first;
         this.isLast = data.last;
@@ -89,25 +93,31 @@ export class MedicoListaComponent implements OnInit {
         //     : this.totalElements;
         // this.txtPagina = data.number + 1;
       });
-      this._validNumberPage();
-//      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
+    this._validNumberPage();
+    //      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
   }
 
   pages(): number {
-    let xx =  Math.ceil(this.totalElements / this.size)-1;
-//    console.log("xx:", xx);
+    let xx = Math.ceil(this.totalElements / this.size) - 1;
+    //    console.log("xx:", xx);
     return xx;
   }
 
   _validNumberPage() {
     const total = this.pages();
     this._validPage =
-    this._numberPage !== null && this._numberPage >= 0 && (this._numberPage - 1) <= total;
+      this._numberPage !== null &&
+      this._numberPage >= 0 &&
+      this._numberPage - 1 <= total;
   }
 
   irAPagina() {
     if (this._validPage && this._numberPage !== null) {
       this.changePage(this._numberPage);
     }
+  }
+
+  isOperation(operation: string) {
+    return this.permissions?.some((reg) => reg.operation === operation);
   }
 }

@@ -21,6 +21,10 @@ export class PacienteService extends GenericService<Paciente> {
       return this.http.get<ReqPageable>(`${this.url}/pageable?apellidos=${_Apellidos}&nombres=${_Nombres}&page=${p}&size=${s}`);
   }
 
+  buscaPorDni(_dni: string = '') {
+      return this.http.get<Paciente>(`${this.url}/dni/${_dni}`);
+  }
+
   getPacienteCambio() {
     return this.pacienteCambio.asObservable();
   }

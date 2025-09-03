@@ -12,9 +12,6 @@ import { PacienteComponent } from './paciente/paciente.component';
 import { PacienteEdicionComponent } from './paciente/paciente-edicion/paciente-edicion.component';
 import { MedicoDetalleComponent } from './medico/medico-detalle/medico-detalle.component';
 import { MedicoListaComponent } from './medico/medico-lista/medico-lista.component';
-import { RegistroEditorComponent } from './muestras/resistro/registro-editor/registro-editor.component';
-import { RegistroListarComponent } from './muestras/resistro/registro-listar/registro-listar.component';
-import { RegistroDetalleComponent } from './muestras/resistro/registro-detalle/registro-detalle.component';
 import { GuardService } from '../_service/guard.service';
 import { UsuarioComponent } from './usuario/usuario.component';
 import { UsuarioEdicionComponent } from './usuario/usuario-edicion/usuario-edicion.component';
@@ -40,12 +37,12 @@ import { PacienteDetalleComponent } from './paciente/paciente-detalle/paciente-d
 import { PacienteListaComponent } from './paciente/paciente-lista/paciente-lista.component';
 import { TipoDetalleComponent } from './tipo/tipo-detalle/tipo-detalle.component';
 import { TipoListaComponent } from './tipo/tipo-lista/tipo-lista.component';
-import { FacturaComponent } from './muestras/factura/factura.component';
-import { Factura2Component } from './muestras/factura2/factura2.component';
 import { CatanaDetalleComponent } from './catana/catana-detalle/catana-detalle.component';
 import { CatanaListaComponent } from './catana/catana-lista/catana-lista.component';
 import { AnalisisDetailComponent } from './analisis/analisis-detail/analisis-detail.component';
 import { AnalisisListComponent } from './analisis/analisis-list/analisis-list.component';
+import { UsuarioResetPasswordComponent } from './usuario/usuario-reset-password/usuario-reset-password.component';
+import { RolePermissionComponent } from './role/role-permission/role-permission.component';
 
 export const PagesRoutes: Routes = [
   { path: 'inicio', component: InicioComponent }, //, canActivate: [GuardService]
@@ -57,6 +54,7 @@ export const PagesRoutes: Routes = [
       { path: 'new', component: UsuarioEdicionComponent },
       { path: 'edit/:id', component: UsuarioEdicionComponent },
       { path: 'detail/:id', component: UsuarioDetalleComponent },
+      { path: 'reset/:id', component: UsuarioResetPasswordComponent },
       { path: 'list', component: UsuarioListaComponent },
     ],
     canActivate: [GuardService],
@@ -68,6 +66,7 @@ export const PagesRoutes: Routes = [
       { path: 'nuevo', component: RoleEdicionComponent },
       { path: 'edicion/:id', component: RoleEdicionComponent },
       { path: 'detalle/:id', component: RoleDetalleComponent },
+      { path: 'permisos/:id', component: RolePermissionComponent },
       { path: 'lista', component: RoleListaComponent },
     ],
     canActivate: [GuardService],

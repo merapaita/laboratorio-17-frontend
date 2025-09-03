@@ -7,4 +7,5 @@ export interface Operation {
     httpMethod:string;
     permitAll:boolean;
     module: Module;
+    select:boolean;
 }

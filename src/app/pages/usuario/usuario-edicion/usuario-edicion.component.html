@@ -20,7 +20,7 @@
                 </div>
             </div>
             <div class="form-floating col-9 mb-3">
-                <input type="text" class="form-control" id="username" placeholder="username" formControlName="username">
+                <input type="text" class="form-control" id="username" formControlName="username" [readonly]="edicion">
                 <label for="username" class="form-label">Username</label>
                 <div *ngIf="username?.invalid && (username?.dirty || username?.touched)" class="error-message">
                     <div *ngIf="username?.errors?.['required']">
@@ -34,7 +34,7 @@
                       </pre> -->
                 </div>
             </div>
-            <div class="form-floating col-3 mb-3">
+            <div class="form-floating col-9 mb-3">
                 <select class="form-select" formControlName="role">
                     <option *ngFor="let t of (roles$ | async)" [value]="t.name">
                         {{t.name}}
@@ -50,6 +50,7 @@
                 </div>
             </div>
 
+            @if (!edicion) {
             <div class="form-floating col-9 mb-3">
                 <input type="password" class="form-control" id="password" placeholder="contraseña"
                     formControlName="password">
@@ -62,8 +63,8 @@
                         error de formato
                     </div>
                     <!-- <pre>
-                        {{apellidos?.errors | json}}
-                      </pre> -->
+                            {{apellidos?.errors | json}}
+                          </pre> -->
                 </div>
             </div>
             <div class="form-floating col-9 mb-3">
@@ -79,10 +80,11 @@
                         error de formato
                     </div>
                     <!-- <pre>
-                        {{apellidos?.errors | json}}
-                      </pre> -->
+                            {{apellidos?.errors | json}}
+                          </pre> -->
                 </div>
             </div>
+            }
         </div>
         <div class="text-center">
             <button class="btn btn-outline-primary mb-3" [disabled]="form.invalid" type="button"

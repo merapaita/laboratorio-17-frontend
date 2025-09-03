@@ -59,6 +59,21 @@
   form {
     background-color: #121212;
   }
+
+  label {
+    font-size: 12px ;
+  }
+
+  input:focus + label {
+    font-size: 16px;
+    color: black;
+  }
+
+  select:focus + label {
+    font-size: 16px;
+    color: rgb(241, 238, 238);
+  }
+
   input,
   select,
   textarea {

@@ -35,13 +35,17 @@
                     <td>{{permission.module}}</td>
                     <td>{{permission.role}}</td>
                     <td>
+                      @if (isOperation("READ_ONE_PERMISSION")) {
                         <button class="btn btn-outline-primary" routerLink="/pages/permission/detail/{{permission.id}}"><i
                                 class="far fa-eye"></i> Ver</button>
+                      }
+                      @if (isOperation("UPDATE_ONE_PERMISSION")) {
                         <button class="btn btn-outline-warning"
                             [routerLink]="['/pages/permission/edit', permission.id]"><i class="far fa-edit"></i>
                             Editar</button>
                         <!-- <button class="btn btn-outline-danger" (click)="elimina(ingreso.iding)"><i class="far fa-trash-alt"></i>
                         Eliminar</button> -->
+                      }
                     </td>
                 </tr>
             </tbody>

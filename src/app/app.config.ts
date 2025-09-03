@@ -1,4 +1,8 @@
-import { ApplicationConfig, importProvidersFrom, provideZoneChangeDetection } from '@angular/core';
+import {
+  ApplicationConfig,
+  importProvidersFrom,
+  provideZoneChangeDetection,
+} from '@angular/core';
 import { provideRouter } from '@angular/router';
 
 import { routes } from './app.routes';
@@ -8,6 +12,7 @@ import { ServerErrorsInterceptorFn } from './shared/server-errors.interceptor';
 import { JwtModule } from '@auth0/angular-jwt';
 import { variables } from './variables';
 import { AuthInterceptorFn } from './shared/auth.interceptor';
+import {  } from 'ngx-extended-pdf-viewer';
 
 export function tokenGetter() {
   return sessionStorage.getItem(variables.TOKEN_NAME);
@@ -18,7 +23,19 @@ export const appConfig: ApplicationConfig = {
     provideAnimations(),
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideHttpClient(withInterceptors([ServerErrorsInterceptorFn, AuthInterceptorFn])),
+    provideHttpClient(
+      withInterceptors([ServerErrorsInterceptorFn, AuthInterceptorFn])
+    ),
+    // provideNgxExtendedPdfViewer({
+    //   assetsFolder: 'assets/ngx-extended-pdf-viewer/',
+    // }),
+    // importProvidersFrom(NgxExtendedPdfViewerModule),
+    // {
+    //   provide: NGX_EXTENDED_PDF_VIEWER_CONFIG,
+    //   useValue: {
+    //     assetsFolder: 'assets/ngx-extended-pdf-viewer/',
+    //   },
+    // },
     // importProvidersFrom(
     //   HttpClientModule,
     //   JwtModule.forRoot({

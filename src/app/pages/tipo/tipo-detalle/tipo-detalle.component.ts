@@ -1,7 +1,7 @@
 import { NgIf } from '@angular/common';
 import { Component, inject, OnInit } from '@angular/core';
 import { Tipo } from '../../../_model/tipo';
-import { TipoService } from '../../../_service/tip.service';
+import { TipoService } from '../../../_service/tipo.service';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 @Component({
@@ -34,6 +34,6 @@ export class TipoDetalleComponent implements OnInit {
   }
 
   volver(): void {
-    this.router.navigate(['pages/type/list']);
+    this.router.navigate(['pages/type']);
   }
 }

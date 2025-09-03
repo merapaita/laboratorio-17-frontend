@@ -31,7 +31,6 @@ export class RoleDetalleComponent implements OnInit {
   initForm() {
     this.roleService.listarPorId(this.id).subscribe((data) => {
       this.role = data;
-      console.log('detalle:', this.role);
     });
   }
 

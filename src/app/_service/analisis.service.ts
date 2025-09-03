@@ -17,9 +17,9 @@ export class AnalisisService extends GenericService<Analisis> {
     super(http, `${variables.HOST}/analysis`);
   }
 
-  listarPageable(_descripcion: string = '', p: number, s: number) {
+  listarPageable(_apellidos: string = '', _nombres:string = '', p: number, s: number) {
     return this.http.get<ReqPageable>(
-      `${this.url}/pageable?descripcion=${_descripcion}&page=${p}&size=${s}`
+      `${this.url}/pageable?apellidos=${_apellidos}&nombres=${_nombres}&page=${p}&size=${s}`
     );
   }
 
@@ -37,5 +37,11 @@ export class AnalisisService extends GenericService<Analisis> {
 
   setMensajeCambio(mensaje: string) {
     this.mensajeCambio.next(mensaje);
+  }
+
+  generarReporte(id: number) {
+    return this.http.get(`${this.url}/generarReporte/${id}`, {
+      responseType: 'blob',
+    });
   }
 }

@@ -44,6 +44,13 @@ export class UserService {
     });
   }
 
+  modificaPassword(usuarioNuevo: UsuarioNuevo) {
+    console.log(usuarioNuevo)
+    return this.http.put<UsuarioRegistrado>(`${this.url}/password`, usuarioNuevo, {
+      headers: new HttpHeaders().set('Content-Type', 'application/json;'),
+    });
+  }
+
   //   refrescaToken(tokenR:string) {
   //     const body = `grant_type=refresh_token&refresh_token=${encodeURIComponent(tokenR)}`;
   //     //const body = `grant_type=refresh_token&refresh_token=${tokenR}`;

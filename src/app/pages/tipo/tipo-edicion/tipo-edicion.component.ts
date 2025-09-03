@@ -8,7 +8,7 @@ import {
   Validators,
 } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
-import { TipoService } from '../../../_service/tip.service';
+import { TipoService } from '../../../_service/tipo.service';
 import { Tipo } from '../../../_model/tipo';
 
 @Component({
@@ -92,6 +92,10 @@ export class TipoEdicionComponent implements OnInit {
         this.router.navigate([`pages/type/detail/${idTipo}`]);
       });
     }
+  }
+
+  cerrar() {
+    
   }
 
   get descripcion() {

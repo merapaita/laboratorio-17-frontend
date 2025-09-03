@@ -1,6 +1,6 @@
 <div class="container">
-  <div class="filtro">
-  </div>
+    <div class="filtro">
+    </div>
     <div class="table-responsive">
         <table class="table border table-dark table-hover table-striped table-fixed">
             <thead>
@@ -12,18 +12,28 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let user of users">
+                <tr *ngFor="let user of (users)">
                     <td>{{user.username}}</td>
                     <td>{{user.name}}</td>
                     <td>{{user.role}}</td>
                     <td>
+                        @if (isOperation("READ_ONE_CUSTOMER")) {
                         <button class="btn btn-outline-primary" routerLink="/pages/user/detail/{{user.username}}"><i
                                 class="far fa-eye"></i> Ver</button>
-                        <button class="btn btn-outline-warning"
-                            [routerLink]="['/pages/user/edit', user.username]"><i class="far fa-edit"></i>
+                        }
+                        @if (isOperation("UPDATE_ONE_CUSTOMER")) {
+                        <button class="btn btn-outline-warning" [routerLink]="['/pages/user/edit', user.username]"><i
+                                class="far fa-edit"></i>
                             Editar</button>
+                        <button class="btn btn-outline-warning" [routerLink]="['/pages/user/reset', user.username]"><i
+                                class="far fa-edit"></i>
+                            Rst Password</button>
                         <!-- <button class="btn btn-outline-danger" (click)="elimina(ingreso.iding)"><i class="far fa-trash-alt"></i>
                         Eliminar</button> -->
+                        }
+                        <!-- <button class="btn btn-outline-warning"  (click)='seleUser(user)'
+                            data-bs-toggle="modal" data-bs-target="#resetPassword">
+                            Rst Password</button> -->
                     </td>
                 </tr>
             </tbody>
@@ -31,23 +41,18 @@
     </div>
     <div class="d-flex flex-wrap align-items-center justify-content-between">
         <div class="mb-2">
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === 0"
-                  (click)="first()">Primero</button>
-    
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === 0"
-                  (click)="changePage(numberPage - 1)">Anterior</button>
-    
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === pages()"
-                  (click)="changePage(numberPage + 1)">Siguiente</button>
-    
-          <button class="btn btn-outline-primary"
-                  [disabled]="numberPage === pages()"
-                  (click)="last()">Último</button>
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === 0"
+                (click)="first()">Primero</button>
+
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === 0"
+                (click)="changePage(numberPage - 1)">Anterior</button>
+
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === pages()"
+                (click)="changePage(numberPage + 1)">Siguiente</button>
+
+            <button class="btn btn-outline-primary" [disabled]="numberPage === pages()" (click)="last()">Último</button>
         </div>
-    
+
         <!-- Ir a página -->
         <!-- <div class="input-group mb-2" style="width: 200px;">
           <input type="number" class="form-control" placeholder="Página"
@@ -58,26 +63,33 @@
           <button class="btn btn-primary" (click)="irAPagina()">Ir</button>
         </div> -->
         <div class="input-group mb-2" style="width: 220px;">
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Página"
-              [(ngModel)]="_numberPage"
-              (ngModelChange)="_validNumberPage()"
-              [ngClass]="{
+            <input type="number" class="form-control" placeholder="Página" [(ngModel)]="_numberPage"
+                (ngModelChange)="_validNumberPage()" [ngClass]="{
                 'is-valid': _validPage && _numberPage !== null,
                 'is-invalid': !_validPage && _numberPage !== null
-              }"
-              [min]="0"
-              [max]="pages()"
-            />
-            <button
-              class="btn btn-primary"
-              (click)="changePage(_numberPage - 1)"
-              [disabled]="!_validPage"
-            >
-              Ir
+              }" [min]="0" [max]="pages()" />
+            <button class="btn btn-primary" (click)="changePage(_numberPage - 1)" [disabled]="!_validPage">
+                Ir
             </button>
-          </div>
-      </div>
+        </div>
+    </div>
 </div>
+
+<!-- Modal -->
+<!-- <div class="modal fade" id="resetPassword" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content bg-dark text-white border-secondary">
+            <div class="modal-header border-secondary">
+                <h1 class="modal-title fs-6" id="exampleModalLabel">Modal title</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <app-usuario-reset-password [newUser]="newUser"></app-usuario-reset-password>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div> -->

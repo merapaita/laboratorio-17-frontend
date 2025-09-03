@@ -1,4 +1,4 @@
-import { Tipo } from './../_model/tipo';
+import { Tipo } from '../_model/tipo';
 import { Injectable } from '@angular/core';
 import { GenericService } from './generic.service';
 import { Subject } from 'rxjs';
@@ -17,8 +17,8 @@ export class TipoService extends GenericService<Tipo> {
     super(http, `${variables.HOST}/type`);
   }
 
-  listarPageable(p: number, s: number) {
-      return this.http.get<ReqPageable>(`${this.url}/pageable?page=${p}&size=${s}`);
+  listarPageable(descripcion:string="", p: number=0, s: number=10) {
+      return this.http.get<ReqPageable>(`${this.url}/pageable?descripcion=${descripcion}&page=${p}&size=${s}`);
   }
 
   getTipoCambio() {

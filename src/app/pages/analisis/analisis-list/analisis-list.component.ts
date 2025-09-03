@@ -6,6 +6,8 @@ import { ReqPageable } from '../../../_model';
 import { AnalisisService } from '../../../_service/analisis.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { Analisis } from '../../../_model/analisis';
+import { PermissionService } from '../../../_service/permission.service';
+import { ShowPermission } from '../../../_model/showPermission';
 
 @Component({
   selector: 'app-analisis-list',
@@ -20,12 +22,19 @@ export class AnalisisListComponent implements OnInit {
 
   private analisisService = inject(AnalisisService);
   private notificationService = inject(NotificationService);
+  private permissionService = inject(PermissionService);
+  private permission: ShowPermission[] | undefined;
 
-  _descripcion = '';
+  _apellidos = '';
+  _nombres = '';
   _text = '';
   analysisList: Array<Analisis> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this.permission = data;
+    });
+
     this.changePage(this.numberPage);
   }
 
@@ -49,7 +58,7 @@ export class AnalisisListComponent implements OnInit {
 
   changePage(page: number) {
     this.analisisService
-      .listarPageable(this._descripcion, page, this.size)
+      .listarPageable(this._apellidos, this._nombres, page, this.size)
       .subscribe((data) => {
         //        console.log(data);
         this.analysisList = data.content;
@@ -66,7 +75,12 @@ export class AnalisisListComponent implements OnInit {
 
   busca() {
     this.analisisService
-      .listarPageable(this._descripcion, this.numberPage, this.size)
+      .listarPageable(
+        this._apellidos,
+        this._nombres,
+        this.numberPage,
+        this.size
+      )
       .subscribe((data) => {
         //        console.log(data);
         this.analysisList = data.content;
@@ -98,5 +112,8 @@ export class AnalisisListComponent implements OnInit {
     if (this._validPage && this._numberPage !== null) {
       this.changePage(this._numberPage);
     }
+  }
+  isOperation(operation: string) {
+    return this.permission?.some((reg) => reg.operation === operation);
   }
 }

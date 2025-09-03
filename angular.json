@@ -34,7 +34,9 @@
 							"node_modules/normalize.css/normalize.css",
 							"src/styles/index.scss"
 						],
-						"scripts": []
+						"scripts": [
+							"node_modules/bootstrap/dist/js/bootstrap.min.js"
+						]
 					},
 					"configurations": {
 						"production": {

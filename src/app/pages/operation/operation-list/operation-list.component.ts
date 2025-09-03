@@ -6,13 +6,15 @@ import { ReqPageable } from '../../../_model';
 import { OperationService } from '../../../_service/operation.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { Operation } from '../../../_model/operation';
+import { PermissionService } from '../../../_service/permission.service';
+import { ShowPermission } from '../../../_model/showPermission';
 
 @Component({
   selector: 'app-operation-list',
   standalone: true,
   imports: [FormsModule, NgFor, RouterModule, NgClass],
   templateUrl: './operation-list.component.html',
-  styleUrl: './operation-list.component.scss'
+  styleUrl: './operation-list.component.scss',
 })
 export class OperationListComponent implements OnInit {
   notifications: Notification[] = [];
@@ -20,11 +22,17 @@ export class OperationListComponent implements OnInit {
 
   private operationService = inject(OperationService);
   private notificationService = inject(NotificationService);
+  private permissionService = inject(PermissionService);
+  private permission: ShowPermission[] | undefined;
 
   _text = '';
   operations: Array<Operation> = [];
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this.permission = data;
+    });
+
     this.changePage(this.numberPage);
   }
 
@@ -47,24 +55,22 @@ export class OperationListComponent implements OnInit {
   }
 
   changePage(page: number) {
-    this.operationService
-      .listPageable(page, this.size)
-      .subscribe((data) => {
-        //        console.log(data);
-        this.operations = data.content;
-        this.isFirst = data.first;
-        this.isLast = data.last;
-        this.totalPages = data.totalPages;
-        this.totalElements = data.totalElements;
-        this.numberPage = data.number;
-        this._numberPage = data.number + 1;
-        // this.iniPagina = data.number * data.size + 1;
-        // this.finPagina =
-        //   (data.number + 1) * 10 < data.totalElements
-        //     ? (data.number + 1) * 10
-        //     : this.totalElements;
-        // this.txtPagina = data.number + 1;
-      });
+    this.operationService.listPageable(page, this.size).subscribe((data) => {
+      //        console.log(data);
+      this.operations = data.content;
+      this.isFirst = data.first;
+      this.isLast = data.last;
+      this.totalPages = data.totalPages;
+      this.totalElements = data.totalElements;
+      this.numberPage = data.number;
+      this._numberPage = data.number + 1;
+      // this.iniPagina = data.number * data.size + 1;
+      // this.finPagina =
+      //   (data.number + 1) * 10 < data.totalElements
+      //     ? (data.number + 1) * 10
+      //     : this.totalElements;
+      // this.txtPagina = data.number + 1;
+    });
     this._validNumberPage();
     //      console.log("first:", this.isFirst, "last:", this.isLast, "page", this.numberPage, this.totalPages, this.totalElements);
   }
@@ -87,5 +93,9 @@ export class OperationListComponent implements OnInit {
     if (this._validPage && this._numberPage !== null) {
       this.changePage(this._numberPage);
     }
+  }
+
+  isOperation(operation: string) {
+    return this.permission?.some((reg) => reg.operation === operation);
   }
 }

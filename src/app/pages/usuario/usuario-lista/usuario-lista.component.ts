@@ -6,11 +6,15 @@ import { UserService } from '../../../_service/user.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { UsuarioRegistrado } from '../../../_model/usuario-registrado';
 import { NgClass, NgFor } from '@angular/common';
+import { ShowPermission } from '../../../_model/showPermission';
+import { PermissionService } from '../../../_service/permission.service';
+import { UsuarioResetPasswordComponent } from '../usuario-reset-password/usuario-reset-password.component';
+import { UsuarioNuevo } from '../../../_model/usuario-nuevo';
 
 @Component({
   selector: 'app-usuario-lista',
   standalone: true,
-  imports: [FormsModule, RouterLink, NgClass, NgFor],
+  imports: [FormsModule, RouterLink, NgClass, NgFor, UsuarioResetPasswordComponent],
   templateUrl: './usuario-lista.component.html',
   styleUrl: './usuario-lista.component.scss',
 })
@@ -20,11 +24,21 @@ export class UsuarioListaComponent {
 
   private userService = inject(UserService);
   private notificationService = inject(NotificationService);
+  private permissions:ShowPermission[]|undefined;
+  private permissionService = inject(PermissionService);  
 
   _text = '';
   users: Array<UsuarioRegistrado> = [];
+//  newUser:UsuarioNuevo|undefined;
+
+  constructor() {
+    // this.username = "sss";
+  }
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe(data => {
+      this.permissions = data;
+    })
     this.changePage(this.numberPage);
   }
 
@@ -99,4 +113,13 @@ export class UsuarioListaComponent {
         this._numberPage = data.number + 1;
       });
   }
+
+  isOperation(operation:string) {
+    return this.permissions?.some(reg => reg.operation === operation);
+  }
+
+  // seleUser(newUser:UsuarioNuevo|undefined) {
+  //   this.newUser = newUser;
+  // }
+  
 }

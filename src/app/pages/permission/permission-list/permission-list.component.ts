@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { ReqPageable } from '../../../_model';
-import { PermissionService } from '../../../_service/permissionService';
+import { PermissionService } from '../../../_service/permission.service';
 import { NotificationService } from '../../../_service/notification.service';
 import { Operation } from '../../../_model/operation';
 import { ShowPermission } from '../../../_model/showPermission';
@@ -25,8 +25,12 @@ export class PermissionListComponent implements OnInit {
   _text = '';
   _role = '';
   permissions: Array<ShowPermission> = [];
+  _permissions: ShowPermission[]|undefined;
 
   ngOnInit(): void {
+    this.permissionService.getPermissionCambio().subscribe((data) => {
+      this._permissions = data;
+    });
     this.changePage(this.numberPage);
   }
 
@@ -90,11 +94,7 @@ export class PermissionListComponent implements OnInit {
 
   busca() {
     this.permissionService
-      .listPageable(
-        this._role,
-        0,
-        10
-      ) // , this.order, this.asc
+      .listPageable(this._role, 0, 10) // , this.order, this.asc
       .subscribe((data) => {
         this.permissions = data.content;
         this.isFirst = data.first;
@@ -105,5 +105,8 @@ export class PermissionListComponent implements OnInit {
         this._numberPage = data.number + 1;
       });
   }
-}
 
+  isOperation(operation: string) {
+    return this._permissions?.some((reg) => reg.operation === operation);
+  }
+}

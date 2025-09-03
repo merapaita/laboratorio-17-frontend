@@ -7,14 +7,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                @if (isOperation('READ_ALL_TYPES_PAGE')) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="list/" routerLinkActive="active"><i class="far fa-list-alt"></i>Lista</a>
+                    <a class="nav-link" routerLink="list/" routerLinkActive="active"><i
+                            class="far fa-list-alt"></i>Lista</a>
                 </li>
+                }
+                @if (isOperation('CREATE_ONE_TYPE')) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="new/" routerLinkActive="active"><i class="fas fa-plus-circle"></i> Nueva Registro</a>
+                    <a class="nav-link" routerLink="new/" routerLinkActive="active"><i class="fas fa-plus-circle"></i>
+                        Nueva Registro</a>
                 </li>
+                }
             </ul>
         </div>
     </div>
 </nav>
+<div [hidden]="activateRoute.children.length !== 0">
+    <app-tipo-lista></app-tipo-lista>
+</div>
+
 <router-outlet></router-outlet>

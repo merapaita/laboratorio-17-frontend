@@ -2,8 +2,12 @@
     <div class="filtro">
         <form class="row g-3">
             <div class="col-md-4">
-                <input type="text" placeholder="descripcion" class="form-control" id="descripcion" name="descripcion"
-                    [(ngModel)]="_descripcion" (change)="busca()">
+                <input type="text" placeholder="apellidos" class="form-control" id="apellidos" name="apellidos"
+                    [(ngModel)]="_apellidos" (change)="busca()">
+            </div>
+            <div class="col-md-4">
+                <input type="text" placeholder="nombres" class="form-control" id="nombres" name="nombres"
+                    [(ngModel)]="_nombres" (change)="busca()">
             </div>
             <div class="d-grid gap-2 col-3 mx-auto">
                 <button type="button" class="btn btn-outline-success" (click)="busca()">Buscar</button>
@@ -30,13 +34,18 @@
                     <td>{{analysis.fecha|date:"dd/MM/yyyy"}}</td>
                     <td>{{analysis.codenv}}</td>
                     <td>
-                        <button class="btn btn-outline-primary" routerLink="/pages/analysis/detail/{{analysis.idAnalisis}}"><i
-                                class="far fa-eye"></i> Ver</button>
+                        @if (isOperation('READ_ONE_ANALYSIS')) {
+                        <button class="btn btn-outline-primary"
+                            routerLink="/pages/analysis/detail/{{analysis.idAnalisis}}"><i class="far fa-eye"></i>
+                            Ver</button>
+                        }
+                        @if (isOperation('UPDATE_ONE_ANALYSIS')) {
                         <button class="btn btn-outline-warning"
                             [routerLink]="['/pages/analysis/edit', analysis.idAnalisis]"><i class="far fa-edit"></i>
                             Editar</button>
                         <!-- <button class="btn btn-outline-danger" (click)="elimina(ingreso.iding)"><i class="far fa-trash-alt"></i>
                         Eliminar</button> -->
+                        }
                     </td>
                 </tr>
             </tbody>
@@ -44,23 +53,18 @@
     </div>
     <div class="d-flex flex-wrap align-items-center justify-content-between">
         <div class="mb-2">
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === 0"
-                  (click)="first()">Primero</button>
-    
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === 0"
-                  (click)="changePage(numberPage - 1)">Anterior</button>
-    
-          <button class="btn btn-outline-primary me-2"
-                  [disabled]="numberPage === pages()"
-                  (click)="changePage(numberPage + 1)">Siguiente</button>
-    
-          <button class="btn btn-outline-primary"
-                  [disabled]="numberPage === pages()"
-                  (click)="last()">Último</button>
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === 0"
+                (click)="first()">Primero</button>
+
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === 0"
+                (click)="changePage(numberPage - 1)">Anterior</button>
+
+            <button class="btn btn-outline-primary me-2" [disabled]="numberPage === pages()"
+                (click)="changePage(numberPage + 1)">Siguiente</button>
+
+            <button class="btn btn-outline-primary" [disabled]="numberPage === pages()" (click)="last()">Último</button>
         </div>
-    
+
         <!-- Ir a página -->
         <!-- <div class="input-group mb-2" style="width: 200px;">
           <input type="number" class="form-control" placeholder="Página"
@@ -71,26 +75,14 @@
           <button class="btn btn-primary" (click)="irAPagina()">Ir</button>
         </div> -->
         <div class="input-group mb-2" style="width: 220px;">
-            <input
-              type="number"
-              class="form-control"
-              placeholder="Página"
-              [(ngModel)]="_numberPage"
-              (ngModelChange)="_validNumberPage()"
-              [ngClass]="{
+            <input type="number" class="form-control" placeholder="Página" [(ngModel)]="_numberPage"
+                (ngModelChange)="_validNumberPage()" [ngClass]="{
                 'is-valid': _validPage && _numberPage !== null,
                 'is-invalid': !_validPage && _numberPage !== null
-              }"
-              [min]="0"
-              [max]="pages()"
-            />
-            <button
-              class="btn btn-primary"
-              (click)="changePage(_numberPage - 1)"
-              [disabled]="!_validPage"
-            >
-              Ir
+              }" [min]="0" [max]="pages()" />
+            <button class="btn btn-primary" (click)="changePage(_numberPage - 1)" [disabled]="!_validPage">
+                Ir
             </button>
-          </div>
-      </div>
+        </div>
+    </div>
 </div>

@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-sm navbar-expand-md navbar-expand-lg bg-light navbar-dark bg-dark">
-    <div class="container-fluid">
+    <div class="container-fluid pt-1">
         <a class="navbar-brand">ANALISIS</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
             aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,12 +7,18 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNav">
             <ul class="navbar-nav ml-auto">
+                @if (isOperation('READ_ALL_ANALYSIS_PAGE')) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="list/" routerLinkActive="active"><i class="far fa-list-alt"></i>Lista</a>
+                    <a class="nav-link" routerLink="list/" routerLinkActive="active"><i
+                            class="far fa-list-alt"></i>Lista</a>
                 </li>
+                }
+                @if (isOperation('CREATE_ONE_ANALYSIS')) {
                 <li class="nav-item">
-                    <a class="nav-link" routerLink="new/" routerLinkActive="active"><i class="fas fa-plus-circle"></i>Nueva Registro</a>
+                    <a class="nav-link" routerLink="new/" routerLinkActive="active"><i
+                            class="fas fa-plus-circle"></i>Nueva Registro</a>
                 </li>
+                }
             </ul>
         </div>
     </div>

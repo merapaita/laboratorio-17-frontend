@@ -3,7 +3,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { Observable } from 'rxjs';
-import { PermissionService } from '../../../_service/permissionService';
+import { PermissionService } from '../../../_service/permission.service';
 import { Operation } from '../../../_model/operation';
 import { Role } from '../../../_model/role';
 import { OperationService } from '../../../_service/operation.service';

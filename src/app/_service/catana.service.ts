@@ -17,11 +17,7 @@ export class CatanaService extends GenericService<Catana> {
     super(http, `${variables.HOST}/catana`);
   }
 
-  listarPageable(
-    _descripcion: string = '',
-    p: number,
-    s: number
-  ) {
+  listarPageable(_descripcion: string = '', p: number, s: number) {
     return this.http.get<ReqPageable>(
       `${this.url}/pageable?descripcion=${_descripcion}&page=${p}&size=${s}`
     );
@@ -41,5 +37,11 @@ export class CatanaService extends GenericService<Catana> {
 
   setMensajeCambio(mensaje: string) {
     this.mensajeCambio.next(mensaje);
+  }
+
+  generarReporte(id: number) {
+    return this.http.get(`${this.url}/generarReporte/${id}`, {
+      responseType: 'blob',
+    });
   }
 }

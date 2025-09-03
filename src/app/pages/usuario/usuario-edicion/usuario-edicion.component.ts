@@ -10,7 +10,6 @@ import {
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { UsuarioNuevo } from '../../../_model/usuario-nuevo';
 import { UserService } from '../../../_service/user.service';
-import { UsuarioRegistrado } from '../../../_model/usuario-registrado';
 import { Observable } from 'rxjs';
 import { Role } from '../../../_model/role';
 import { RoleService } from '../../../_service/role.service';
@@ -24,7 +23,7 @@ import { RoleService } from '../../../_service/role.service';
 })
 export class UsuarioEdicionComponent implements OnInit {
   form: FormGroup;
-  usuarioNuevo: UsuarioNuevo | null = null;
+  usuarioNuevo: UsuarioNuevo|undefined;
   edicion = false;
   titulo = '';
   id = '';
@@ -51,13 +50,13 @@ export class UsuarioEdicionComponent implements OnInit {
         Validators.pattern(/^([A-Za-z0-9]){3,30}$/),
       ]),
       password: new FormControl('', [
-        Validators.required,
+        // Validators.required,
         // Validators.pattern(
         //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])([A-Za-z\d$@$!%*?&#.$($)$-$_]|[^ ]){4,15}$/
         // ),
       ]),
       repeatedPassword: new FormControl('', [
-        Validators.required,
+        // Validators.required,
         // Validators.pattern(
         //   /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[$@$!%*?&#.$($)$-$_])([A-Za-z\d$@$!%*?&#.$($)$-$_]|[^ ]){4,15}$/
         // ),
@@ -70,6 +69,7 @@ export class UsuarioEdicionComponent implements OnInit {
     this.activateRoute.params.subscribe((params) => {
       this.id = params['id'];
       this.edicion = params['id'] != null;
+      console.log("edicion:",this.edicion)
      this.initForm();
     });
   }
@@ -88,7 +88,6 @@ export class UsuarioEdicionComponent implements OnInit {
 
   aceptar() {
     const registroUsuario: UsuarioNuevo = this.form.value;
-//    const registro: Role = this.form.value;
     if (this.edicion) {
       //MODIFICAR
       this.userService.modifica(registroUsuario).subscribe((result) => {
@@ -101,29 +100,12 @@ export class UsuarioEdicionComponent implements OnInit {
       //REGISTRAR
       this.userService.nuevo(registroUsuario).subscribe((result) => {
         let id = result.id;
+        console.log("id:", id);
         this.userService.setMensajeCambio('REGISTRO SATISFACTORIO');
         this.router.navigate([`pages/user/detail/${id}`]);
       });
     }
   }
-  // aceptar() {
-  //   const registroUsuario: UsuarioNuevo = this.form.value;
-
-  //   this.userService
-  //     .nuevo(registroUsuario)
-  //     .subscribe((result: UsuarioRegistrado) => {
-  //       // let id = result.id;
-  //       //      console.log(result);
-  //       this.userService.setMensajeCambio('REGISTRO SATISFACTORIO');
-  //       //        this.notificationService.show("Medico registrado satisfactoriamente", 'success')
-  //       //        this.medicoService.setMensajeCambio('SOCIO REGISTRADO');
-  //       // this.toastr.success('Venta Registrada', 'OK', {
-  //       //   timeOut: 3000,
-  //       //   positionClass: 'toast-center-center',
-  //       // });
-  //       //this.router.navigate([`/login`]);
-  //     });
-  // }
 
   get name() {
     return this.form.get('name');
